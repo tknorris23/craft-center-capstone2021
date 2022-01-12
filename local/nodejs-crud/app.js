@@ -24,6 +24,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var myRouter = require('./routes');
+
 app.use(session({ 
     cookie: { maxAge: 60000 },
     store: new session.MemoryStore,
@@ -33,6 +35,8 @@ app.use(session({
 }))
 
 app.use(flash());
+
+app.use('/', myRouter);
 
 
 // catch 404 and forward to error handler
