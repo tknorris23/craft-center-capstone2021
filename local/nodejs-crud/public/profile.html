@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Craft Center - My Profile</title>
+    <link rel="stylesheet" href="profile-style.css"/>
+</head>
+<body>
+
+  <!-- Div Bar for OSU w/ logo -->
+  <div id="osuBar">
+    <img src="img/Logo.png" alt="OregonState" id="osuLogo">
+  </div>
+  <!-- Div bar for Craft Center name -->
+  <div id="blackBar">
+    <span id="barText">Craft Center Student View</span>
+  </div>
+
+  <!-- Navigation Bar of Craft Center -->
+  <div class="navBar">
+    <ul>
+      <li><a href="#">HOME</a></li>
+      <li><a href="profile.html">MY PROFILE</a></li>
+      <li><a href="#">MY CLASSES</a></li>
+      <li><a href="#">CLASS REGISTRATION</a></li>
+      <li><a href="#">MEMBERSHIP REGISTRATION</a></li>
+    </ul>
+  </div>
+
+  <!-- Add in a line breaker to break off the the nav from the main content of page -->
+  <br>
+
+  <!-- Add in the box to have student fill in information about them -->
+  <div class="profileBox">
+    <p id="titleProfile">My Profile</p>
+    <p id="userInfo">User Information</p>
+    <hr class="solidLine">
+
+    <!-- Create a form -->
+    <form class="profileForm" action="index.html" method="post">
+      <div class="fname">
+        <p id="fnameid">First Name:</p>
+        <input type="text" name="firstName" value="First Name goes here">
+      </div>
+
+      <div class="lname">
+        <p id="lnameid">Last Name:</p>
+        <input type="text" name="lastName" value="Last Name goes here">
+      </div>
+
+      <div class="memberT">
+        <p id="membershipT">Membership Type:</p>
+        <input type="text" name="memT" value="Student">
+      </div>
+
+      <div class="onidID">
+        <p id="osuID">OSU ONID:</p>
+        <input type="text" name="osuOnid" value="933123456">
+      </div>
+    </form>
+
+    <br>
+
+    <!-- Contact Form -->
+    <p id="contactInfo">Contact Information</p>
+    <hr class="solidLine">
+
+    <form class="contactForm" action="index.html" method="post">
+      <p id="emailID">ONID Email:</p>
+      <input type="text" name="onidEmail" value="onid@oregonstate.edu">
+      <p id="phoneID">Phone Number:</p>
+      <input type="text" name="phoneNum" value="(503) 555-1234">
+    </form>
+
+    <!-- Create a cancel and save button -->
+    <p id="cancelbtn">Cancel</p>
+    <p id="savebtn">Save</p>
+  </div>
+
+  <!-- Add in a line breaker to separate content -->
+  <br>
+</body>
+</html>

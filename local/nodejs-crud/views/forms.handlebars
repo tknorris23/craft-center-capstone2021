@@ -1,0 +1,23 @@
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+
+<h3>Current Forms:</h3>
+<table>
+    <thead> 
+        <th>Form ID</th> 
+        <th>Type</th>
+        <th>Link</th>
+    </thead> 
+    <tbody>
+        {{#each forms}} 
+        <tr> 
+            <td>{{form_ID}}</td> 
+            <td>{{type}}</td> 
+            <td>{{link}}</td>
+        </tr> 
+        {{/each}} 
+    </tbody> 
+</table> 
+</html>

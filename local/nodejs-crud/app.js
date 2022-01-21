@@ -1,30 +1,31 @@
 var createError = require('http-errors');
 var express = require('express');
-var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var flash = require('express-flash');
 var session = require('express-session');
-var mysql = require('mysql');
-var connection  = require('./lib/db');
+var mysql = require('./lib/db.js');
+var bodyParser = require('body-parser');
 
 
 
 var app = express();
+var handlebars = require('express-handlebars').create({
+        defaultLayout:'main',
+        });
+        
+app.engine('handlebars', handlebars.engine);
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'handlebars');
 app.set('port', process.argv[2]);
+app.set('mysql', mysql);
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-var myRouter = require('./routes');
+app.use('/static', express.static('public'));
 
 app.use(session({ 
     cookie: { maxAge: 60000 },
@@ -36,23 +37,34 @@ app.use(session({
 
 app.use(flash());
 
-app.use('/', myRouter);
-
+app.use('/users', require('./users.js'));
+app.use('/classes', require('./classes.js'));
+app.use('/forms', require('./forms.js'));
+app.use('/', express.static('public'));
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(function(req, res) {
+  res.status(404);
+  res.render('404');
+  //next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  console.error(err.stack);
+  res.status(500);
+  res.render('500');
+  //res.locals.message = err.message;
+  //res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  //res.status(err.status || 500);
+  //res.render('error');
 });
 
-module.exports = app;
+//module.exports = app;
+
+app.listen(app.get('port'), function(){
+  console.log('Express started on http://flip1.engr.oregonstate.edu:' + app.get('port') + '; press Ctrl-C to terminate.');
+});

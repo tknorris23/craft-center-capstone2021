@@ -1,0 +1,132 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#osuBar {
+  background: #d73f09;
+  height: 100px;
+  position: relative;
+  border-bottom: none;
+}
+
+#osuLogo {
+  margin-right: auto;
+  width: 18%;
+  height: auto;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+#blackBar {
+  background: black;
+  height: 50px;
+  position: relative;
+  border-bottom: none;
+}
+
+#barText {
+  margin-right: auto;
+  font-size: 25px;
+  padding-left: 10px;
+  color: white;
+  text-align: left;
+  padding: 40px;
+}
+
+.navBar ul {
+  list-style: none;
+  background: white;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.navBar li {
+  display: inline-block;
+}
+
+.navBar a {
+  text-decoration: none;
+  color: #333333;
+  width: 120px;
+  display: block;
+  padding: 25px 20px;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.navBar a:hover {
+  background: black;
+  color: white;
+}
+
+#titleProfile {
+  background: #d73f09;
+  color: white;
+  font-size: 50px;
+  font-style: bold;
+  text-align: center;
+  width: 1000px;
+  height: auto;
+  margin: auto;
+}
+
+.profileBox {
+  width: 1000px;
+  padding: 40px;
+  border: 3px solid black;
+  margin: auto;
+  border-radius: 25px;
+}
+
+#userInfo {
+  text-align: left;
+  font-size: 25px;
+  font-style: bold;
+}
+
+#contactInfo {
+  text-align: left;
+  font-size: 25px;
+  font-style: bold;
+}
+
+hr.solidLine {
+  border-top: 1px solid #222222;
+}
+
+.fname {
+  display: inline-block;
+}
+
+.lname {
+  display: inline-block;
+  margin-left: 400px;
+}
+
+#cancelbtn {
+  display: inline-block;
+  border-radius: 25px;
+  width: 80px;
+  height: 20px;
+  margin-left: auto;
+  color: white;
+  background: #d73f09;
+  text-align: center;
+  padding: auto;
+}
+
+#savebtn {
+  display: inline-block;
+  border-radius: 25px;
+  width: 80px;
+  height: 20px;
+  margin-right: auto;
+  color: white;
+  background: #d73f09;
+  text-align: center;
+  padding: auto;
+}
