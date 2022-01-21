@@ -40,6 +40,7 @@ app.use(flash());
 app.use('/users', require('./users.js'));
 app.use('/classes', require('./classes.js'));
 app.use('/forms', require('./forms.js'));
+app.use('/users_classes', require('./users_classes.js'));
 app.use('/', express.static('public'));
 
 // catch 404 and forward to error handler

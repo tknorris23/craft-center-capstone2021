@@ -1,0 +1,55 @@
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+
+<form id='search_users_classes' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search users for OSU_ID starting with:</label>
+    <input id='OSU_ID_search_string' type='text' name='OSU_ID_search_string' value=''>
+    <input type="button" value="Search" onclick="searchUsersByOSUID()">
+</form>
+
+<h3>Current Users Classes:</h3>
+<table>
+    <thead> 
+        <th>User ID</th> 
+        <th>OSU ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Class ID</th>
+        <th>Category</th>
+        <th>Section</th>
+    </thead> 
+    <tbody>
+        {{#each users_classes}} 
+        <tr> 
+            <td>{{user_ID}}</td> 
+            <td>{{OSU_ID}}</td>
+            <td>{{first_name}}</td>
+            <td>{{last_name}}</td>
+            <td>{{class_ID}}</td>
+            <td>{{category}}</td>
+            <td>{{section}}</td>
+        </tr> 
+        {{/each}} 
+    </tbody> 
+</table> 
+
+<h3>Add users to classes:</h3>
+<form id="addusersclasses" action="/users_classes" method="post">
+    User: <select name="user_ID"> 
+        {{#each users}}
+        <option value="{{user_ID}}">{{first_name}} {{last_name}}</option>
+        {{/each}}
+    </select><br>
+    Class: <select name="class_ID"> 
+        {{#each classes}}
+        <option value="{{class_ID}}">{{category}} {{section}}</option>
+        {{/each}}
+    </select><br>
+    <input type="submit" value="Submit">
+ </form>
+<br/>
+
+</html>

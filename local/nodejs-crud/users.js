@@ -16,7 +16,7 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteuser.js"];
+        context.jsscripts = ["delete_user.js"];
         var mysql = req.app.get('mysql');
         getUsers(res, mysql, context, complete);
         function complete(){
@@ -28,7 +28,7 @@ module.exports = function(){
         }
     });
 
-        /* Adds a person, redirects to the people page after adding */
+        /* Adds a user, redirects to the people page after adding */
 
         router.post('/', function(req, res){
             console.log(req.body)
