@@ -28,7 +28,7 @@ module.exports = function(){
         }
     });
 
-        /* Adds a user, redirects to the people page after adding */
+        /* Adds a user, redirects to the users page after adding */
 
         router.post('/', function(req, res){
             console.log(req.body)
