@@ -75,9 +75,11 @@ module.exports = function(){
         context.jsscripts = ["serch_users_classes.js"];
         var mysql = req.app.get('mysql');
         getUserClasses(req, res, mysql, context, complete);
+        getUsers(req, res, mysql, context, complete);
+        getClasses(req, res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 3){
                 res.render('users_classes', context);
             }
         }
