@@ -10,7 +10,7 @@
     Email: <input type="text" name="email"><br>
     Phone Number: <input type="number" name="phone_num"><br>
     Registered Term: <input type="text" name="term"><br>
-    Member Status: <input type="number" name="current_member"><br>
+    Member Status: <input type="text" name="current_member"><br>
 
     <input type="submit" value="Submit">
  </form>
@@ -25,7 +25,7 @@
         <th>OSU ID</th>
         <th>Email</th>
         <th>Phone Number</th>
-        <th>Currently a Member?</th>
+        <th>Membership Status</th>
         <th>Registered Term</th>
         <th>Delete Button</th>
     </thead> 
@@ -38,7 +38,7 @@
             <td>{{OSU_ID}}</td>
             <td>{{email}}</td>
             <td>{{phone_num}}</td>
-            <td>{{current_member}}</td>
+            <td>{{membership}}</td>
             <td>{{term}}</td>
             <td><button onclick="deleteUser({{user_ID}})">Delete</button></td>
         </tr> 
