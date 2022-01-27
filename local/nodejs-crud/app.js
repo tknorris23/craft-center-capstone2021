@@ -27,12 +27,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use('/static', express.static('public'));
 
+// initializing express-session module
 app.use(session({ 
     cookie: { maxAge: 60000 },
     store: new session.MemoryStore,
     saveUninitialized: true,
     resave: 'true',
-    secret: 'secret'
+    secret: 'CraftCenterRocks'
 }))
 
 app.use(flash());
@@ -63,6 +64,7 @@ app.use(function(err, req, res, next) {
   //res.status(err.status || 500);
   //res.render('error');
 });
+
 
 //module.exports = app;
 

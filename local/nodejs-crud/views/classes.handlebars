@@ -2,7 +2,6 @@
 {{#each foo}}
 {{this}}
 {{/each}}
-
 <h3>Current Classes:</h3>
 <table>
     <thead> 
@@ -30,4 +29,8 @@
         {{/each}} 
     </tbody> 
 </table> 
+<!-- below, we use the 'views' key in the context dict
+     to dynamically fill this view counter. -->
+<h3>Session Example</h3>
+<p>This page has been visted by you {{views}} times.</p>
 </html>
