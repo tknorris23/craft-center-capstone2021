@@ -4,7 +4,7 @@ module.exports = function(){
     var session = require('express-session');
 
     function getClasses(res, mysql, context, complete){
-        mysql.connection.query("SELECT classes.class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time FROM classes", function(error, results, fields){
+        mysql.connection.query("SELECT classes.class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time, classes.cost FROM classes", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -17,6 +17,7 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
+        context.jsscripts = ["delete_class.js"];
         var mysql = req.app.get('mysql');
         // req.session is accessible from any page and can have data added to it.
         if (req.session) {
@@ -52,6 +53,40 @@ module.exports = function(){
         }
         
     });
+
+
+    /* Adds a class, redirects to the classes page after adding */
+
+    router.post('/', function(req, res){
+        console.log(req.body)
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO classes (class_ID, category, section, description, instructor, term, date, time, cost) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        var inserts = [req.body.class_ID, req.body.category, req.body.section, req.body.description, req.body.instructor, req.body.term, req.body.date, req.body.time, req.body.cost];
+        sql = mysql.connection.query(sql,inserts,function(error, results, fields){
+            if(error){
+                console.log(JSON.stringify(error))
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.redirect('/classes');
+            }
+        });
+    });
+
+    router.delete('/:class_ID', function(req, res){
+        var mysql = req.app.get('mysql');
+        var sql = "DELETE FROM classes WHERE class_ID = ?";
+        var inserts = [req.params.class_ID];
+        sql = mysql.connection.query(sql, inserts, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.status(400);
+                res.end();
+            }else{
+                res.status(202).end();
+            }
+        })
+    })
 
     
 

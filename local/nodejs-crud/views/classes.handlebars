@@ -2,6 +2,24 @@
 {{#each foo}}
 {{this}}
 {{/each}}
+
+<h2><a href='/'>Back to Home Page</a></h2>
+
+<h3>Add new classes:</h3>
+<form id="addclass" action="/classes" method="post">
+    Category: <input type="text" name="category"><br>
+    Title: <input type="text" name="section"><br>
+    Instructor: <input type="text" name="instructor"><br>
+    Term Offered: <input type="text" name="term"><br>
+    Date Range: <input type="text" name="date"><br>
+    Time: <input type="text" name="time"><br>
+    Description: <input type="text" name="description"><br>
+    Cost: <input type="number" name="cost"><br>
+    <input type="submit" value="Submit">
+ </form>
+<br/>
+
+
 <h3>Current Classes:</h3>
 <table>
     <thead> 
@@ -12,7 +30,9 @@
         <th>Term</th>
         <th>Date</th>
         <th>Time</th>
+        <th>Cost</th>
         <th>Description</th>
+        <th>Delete Button</th>
     </thead> 
     <tbody>
         {{#each classes}} 
@@ -24,7 +44,9 @@
             <td>{{term}}</td>
             <td>{{date}}</td>
             <td>{{time}}</td>
+            <td>${{cost}}</td>
             <td>{{description}}</td>
+            <td><button onclick="deleteClass({{class_ID}})">Delete</button></td>
         </tr> 
         {{/each}} 
     </tbody> 

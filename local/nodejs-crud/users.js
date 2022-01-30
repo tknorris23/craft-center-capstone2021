@@ -33,8 +33,8 @@ module.exports = function(){
         router.post('/', function(req, res){
             console.log(req.body)
             var mysql = req.app.get('mysql');
-            var sql = "INSERT INTO users (OSU_ID, first_name, last_name, email, phone_num, term, current_member) VALUES(?, ?, ?, ?, ?, ?, ?)";
-            var inserts = [req.body.OSU_ID, req.body.first_name, req.body.last_name, req.body.email, req.body.phone_num, req.body.term, req.body.current_member];
+            var sql = "INSERT INTO users (OSU_ID, first_name, last_name, email, phone_num, term, membership) VALUES(?, ?, ?, ?, ?, ?, ?)";
+            var inserts = [req.body.OSU_ID, req.body.first_name, req.body.last_name, req.body.email, req.body.phone_num, req.body.term, req.body.membership];
             sql = mysql.connection.query(sql,inserts,function(error, results, fields){
                 if(error){
                     console.log(JSON.stringify(error))
