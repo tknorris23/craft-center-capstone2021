@@ -5,12 +5,22 @@
 
 <h2><a href='/'>Back to Home Page</a></h2>
 
+<h3>Add new forms:</h3>
+<form id="addform" action="/forms" method="post">
+    Type: <input type="text" name="type"><br>
+    Link: <input type="link" name="link"><br>
+
+    <input type="submit" value="Submit">
+ </form>
+<br/>
+
 <h3>Current Forms:</h3>
 <table>
     <thead> 
         <th>Form ID</th> 
         <th>Type</th>
         <th>Link</th>
+        <th>Delete Button</th>
     </thead> 
     <tbody>
         {{#each forms}} 
@@ -18,6 +28,7 @@
             <td>{{form_ID}}</td> 
             <td>{{type}}</td> 
             <td>{{link}}</td>
+            <td><button onclick="deleteForm({{form_ID}})">Delete</button></td>
         </tr> 
         {{/each}} 
     </tbody> 
