@@ -42,6 +42,7 @@ app.use('/users', require('./users.js'));
 app.use('/classes', require('./classes.js'));
 app.use('/forms', require('./forms.js'));
 app.use('/users_classes', require('./users_classes.js'));
+app.use('/users_forms', require('./users_forms.js'));
 app.use('/', express.static('public'));
 
 // catch 404 and forward to error handler
@@ -69,5 +70,5 @@ app.use(function(err, req, res, next) {
 //module.exports = app;
 
 app.listen(app.get('port'), function(){
-  console.log('Express started on http://flip1.engr.oregonstate.edu:' + app.get('port') + '; press Ctrl-C to terminate.');
+  console.log('Express started on http://flip[x].engr.oregonstate.edu:' + app.get('port') + '; press Ctrl-C to terminate.');
 });

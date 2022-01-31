@@ -2,27 +2,27 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
-    function getUsersClasses(req, res, mysql, context, complete){
-        mysql.connection.query("SELECT user_class.user_ID AS user_ID, users.OSU_ID, users.first_name AS first_name, users.last_name AS last_name, user_class.class_ID AS class_ID, classes.category AS category, classes.section AS section FROM user_class LEFT JOIN users on users.user_ID = user_class.user_ID LEFT JOIN classes ON classes.class_ID = user_class.class_ID ORDER BY user_ID ASC, class_ID ASC", function(error, results, fields){
+    function getUsersForms(req, res, mysql, context, complete){
+        mysql.connection.query("SELECT user_form.user_ID AS user_ID, users.OSU_ID, users.first_name AS first_name, users.last_name AS last_name, user_form.form_ID AS form_ID, forms.type AS type, forms.link FROM user_form LEFT JOIN users on users.user_ID = user_form.user_ID LEFT JOIN forms ON forms.form_ID = user_form.form_ID ORDER BY user_ID ASC, form_ID ASC;", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.users_classes = results;
+            context.users_forms = results;
             complete();
         });
     }
 
-    //function to search for user class relationships by OSU_ID
-    function searchUsersClasses(req, res, mysql, context, complete){
-        var query = "SELECT user_class.user_ID AS user_ID, users.OSU_ID, users.first_name, users.last_name, user_class.class_ID AS class_ID, classes.category AS category, classes.section AS section FROM user_class LEFT JOIN users on users.user_ID = user_class.user_ID LEFT JOIN classes ON classes.class_ID = user_class.class_ID WHERE users.OSU_ID LIKE " + mysql.connection.escape(req.params.s + '%');
+    //function to search for user class relationships by name
+    function searchUsersForms(req, res, mysql, context, complete){
+        var query = "SELECT user_form.user_ID AS user_ID, users.first_name AS first_name, users.last_name AS last_name, user_form.form_ID AS form_ID, forms.type, forms.link AS type FROM user_form LEFT JOIN users on users.user_ID = user_form.user_ID LEFT JOIN forms ON forms.form_ID = user_form.form_ID WHERE users.first_name LIKE " + mysql.connection.escape(req.params.s + '%');
 
         mysql.connection.query(query, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.users_classes = results;
+            context.users_forms = results;
             complete();
         });
     }
@@ -38,13 +38,13 @@ module.exports = function(){
         });
     }
 
-    function getClasses(req, res, mysql, context, complete){
-        mysql.connection.query("SELECT classes.class_ID, classes.category, classes.section FROM classes", function(error, results, fields){
+    function getForms(req, res, mysql, context, complete){
+        mysql.connection.query("SELECT forms.form_ID, forms.type FROM forms", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.classes = results;
+            context.forms = results;
             complete();
         });
     }
@@ -54,15 +54,15 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["search_users_classes.js"];
+        context.jsscripts = ["search_users_forms.js"];
         var mysql = req.app.get('mysql');
-        getUsersClasses(req, res, mysql, context, complete);
+        getUsersForms(req, res, mysql, context, complete);
         getUsers(req, res, mysql, context, complete);
-        getClasses(req, res, mysql, context, complete);
+        getForms(req, res, mysql, context, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 3){
-                res.render('users_classes', context);
+                res.render('users_forms', context);
             }
 
         }
@@ -71,34 +71,34 @@ module.exports = function(){
     router.get('/search/:s', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["serch_users_classes.js"];
+        context.jsscripts = ["serch_users_forms.js"];
         var mysql = req.app.get('mysql');
-        searchUsersClasses(req, res, mysql, context, complete);
+        searchUsersForms(req, res, mysql, context, complete);
         getUsers(req, res, mysql, context, complete);
-        getClasses(req, res, mysql, context, complete);
+        getForms(req, res, mysql, context, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 3){
-                res.render('users_classes', context);
+                res.render('users_forms', context);
             }
         }
     });
 
-        /* Adds a user, redirects to the people page after adding */
+        /* Adds a users_forms entry, redirects to the users_forms page after adding */
 
         router.post('/', function(req, res){
             console.log(req.body.user_ID)
-            console.log(req.body.class_ID)
+            console.log(req.body.form_ID)
             var mysql = req.app.get('mysql');
-            var sql = "INSERT INTO user_class (user_ID, class_ID) VALUES(?, ?)";
-            var inserts = [req.body.user_ID, req.body.class_ID];
+            var sql = "INSERT INTO user_form (user_ID, form_ID) VALUES(?, ?)";
+            var inserts = [req.body.user_ID, req.body.form_ID];
             sql = mysql.connection.query(sql,inserts,function(error, results, fields){
                 if(error){
                     console.log(JSON.stringify(error))
                     res.write(JSON.stringify(error));
                     res.end();
                 }else{
-                    res.redirect('/users_classes');
+                    res.redirect('/users_forms');
                 }
             });
         });
