@@ -43,6 +43,9 @@ app.use('/classes', require('./classes.js'));
 app.use('/forms', require('./forms.js'));
 app.use('/users_classes', require('./users_classes.js'));
 app.use('/users_forms', require('./users_forms.js'));
+app.use('/classes_forms', require('./classes_forms.js'));
+app.use('/login', require('./login.js'));
+app.use('/profile', require('./profile.js'));
 app.use('/', express.static('public'));
 
 // catch 404 and forward to error handler

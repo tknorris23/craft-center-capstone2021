@@ -1,0 +1,40 @@
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+
+<h2><a href='/'>Back to Home Page</a></h2>
+{{#each profile}}
+<h3>Hello {{first_name}}!:</h3>
+<table>
+    <thead> 
+        <th>User ID</th> 
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Pronouns</th>
+        <th>OSU ID</th>
+        <th>Email</th>
+        <th>Alternate Email</th>
+        <th>Phone Number</th>
+        <th>Membership Status</th>
+        <th>Registered Term</th>
+        <th>Current Fees</th>
+    </thead> 
+    <tbody>
+        <tr> 
+            <td>{{user_ID}}</td> 
+            <td>{{first_name}}</td>
+            <td>{{last_name}}</td>
+            <td>{{pronouns}}</td>
+            <td>{{OSU_ID}}</td>
+            <td>{{email}}</td>
+            <td>{{alt_email}}</td>
+            <td>{{phone_num}}</td>
+            <td>{{membership}}</td>
+            <td>{{term}}</td>
+            <td>{{debt}}</td>
+        </tr> 
+        {{/each}} 
+    </tbody> 
+</table> 
+</html>

@@ -1,0 +1,40 @@
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+
+<h2><a href='/'>Back to Home Page</a></h2>
+
+<form id='search_classes_forms' action='/classes_forms' method='post'>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search classes by the category:</label>
+    <select name="category_search_string" input id= "category_search_string">    
+        {{#each classes}}
+        <option value ="{{category}}">{{category}}</option>
+        {{/each}}
+    </select>
+    <button type="button" onclick="searchClassesByCategory()">Search</button>
+  </form>
+
+<h3>Current Classes Forms:</h3>
+<table>
+    <thead> 
+        <th>Class ID</th> 
+        <th>Category</th>
+        <th>Section</th>
+        <th>Form ID</th>
+        <th>Type</th>
+    </thead> 
+    <tbody>
+        {{#each classes_forms}} 
+        <tr> 
+            <td>{{class_ID}}</td> 
+            <td>{{category}}</td>
+            <td>{{section}}</td>
+            <td>{{form_ID}}</td>
+            <td>{{type}}</td>
+        </tr> 
+        {{/each}} 
+    </tbody> 
+</table> 
+</html>
