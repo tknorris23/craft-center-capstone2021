@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var exphbs = require('express-handlebars');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
@@ -7,18 +8,12 @@ var flash = require('express-flash');
 var session = require('express-session');
 var mysql = require('./lib/db.js');
 var bodyParser = require('body-parser');
-
-
-
 var app = express();
-var handlebars = require('express-handlebars').create({
-        defaultLayout:'main',
-        });
-        
-app.engine('handlebars', handlebars.engine);
+
 
 // view engine setup
-app.set('view engine', 'handlebars');
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars')
 app.set('port', process.argv[2]);
 app.set('mysql', mysql);
 
@@ -38,6 +33,13 @@ app.use(session({
 
 app.use(flash());
 
+//get homepage
+app.get('/', function(req, res){
+  res.status(200).render('home', {
+
+  });
+})
+
 app.use('/users', require('./users.js'));
 app.use('/classes', require('./classes.js'));
 app.use('/forms', require('./forms.js'));
@@ -46,7 +48,6 @@ app.use('/users_forms', require('./users_forms.js'));
 app.use('/classes_forms', require('./classes_forms.js'));
 app.use('/login', require('./login.js'));
 app.use('/profile', require('./profile.js'));
-app.use('/', express.static('public'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res) {
@@ -68,9 +69,6 @@ app.use(function(err, req, res, next) {
   //res.status(err.status || 500);
   //res.render('error');
 });
-
-
-//module.exports = app;
 
 app.listen(app.get('port'), function(){
   console.log('Express started on http://flip[x].engr.oregonstate.edu:' + app.get('port') + '; press Ctrl-C to terminate.');
