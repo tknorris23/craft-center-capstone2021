@@ -1,0 +1,30 @@
+<h2><a href='/'>Back to Home Page</a></h2>
+
+
+<h3>Current Classes:</h3>
+<table>
+    <thead> 
+        <th>Class ID</th> 
+        <th>Category</th>
+        <th>Section</th>
+        <th>Instructor</th>
+        <th>Term</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Cost</th>
+        <th>Description</th>
+    </thead> 
+    <tbody>
+        {{#each my_classes}} 
+        <tr> 
+            <td>{{class_ID}}</td> 
+            <td>{{category}}</td> 
+            <td>{{section}}</td>
+            <td>{{instructor}}</td>
+            <td>{{term}}</td>
+            <td>{{date}}</td>
+            <td>{{time}}</td>
+            <td>${{cost}}</td>
+            <td>{{description}}</td>
+        </tr> 
+        {{/each}}

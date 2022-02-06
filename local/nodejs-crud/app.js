@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var flash = require('express-flash');
-var session = require('express-session');
+var sessions = require('express-session');
 var mysql = require('./lib/db.js');
 var bodyParser = require('body-parser');
 var app = express();
@@ -17,29 +17,32 @@ app.set('view engine', 'handlebars')
 app.set('port', process.argv[2]);
 app.set('mysql', mysql);
 
+app.use('/static', express.static('public'));
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use('/static', express.static('public'));
+
 
 // initializing express-session module
-app.use(session({ 
-    //cookie: { maxAge: 60000 },
-    store: new session.MemoryStore,
+app.use(sessions({ 
+    cookie: { maxAge: 1000*60*60*24 },
+    store: new sessions.MemoryStore,
     saveUninitialized: true,
-    resave: 'true',
+    resave: 'false',
     secret: 'CraftCenterRocks'
 }));
-var user;
+
+var session;
 
 
-app.use(flash());
+//app.use(flash());
 
 //get homepage
 app.get('/', function(req, res){
-  res.status(200).render('home', {
 
-  });
+  session = req.session;
+  session.user;
+  res.status(200).render('home', {});
 })
 
 app.use('/users', require('./users.js'));
@@ -50,6 +53,7 @@ app.use('/users_forms', require('./users_forms.js'));
 app.use('/classes_forms', require('./classes_forms.js'));
 app.use('/login', require('./login.js'));
 app.use('/profile', require('./profile.js'));
+app.use('/my_classes', require('./my_classes.js'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res) {
