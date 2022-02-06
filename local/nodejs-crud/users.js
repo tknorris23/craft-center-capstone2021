@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 function getUsers(res, mysql, context, complete){
-    mysql.connection.query("SELECT users.user_ID, users.OSU_ID, users.first_name, users.last_name, users.email, users.phone_num, users.term, users.membership, users.comments FROM users", function(error, results, fields){
+    mysql.connection.query("SELECT users.user_ID, users.OSU_ID, users.first_name, users.last_name, users.pronouns, users.prefered_name, users.email, users.alt_email, users.phone_num, users.term, users.membership, users.debt, users.comments FROM users", function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
             res.end();

@@ -24,12 +24,14 @@ app.use('/static', express.static('public'));
 
 // initializing express-session module
 app.use(session({ 
-    cookie: { maxAge: 60000 },
+    //cookie: { maxAge: 60000 },
     store: new session.MemoryStore,
     saveUninitialized: true,
     resave: 'true',
     secret: 'CraftCenterRocks'
-}))
+}));
+var user;
+
 
 app.use(flash());
 

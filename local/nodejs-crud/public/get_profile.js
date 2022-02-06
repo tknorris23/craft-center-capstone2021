@@ -4,3 +4,10 @@ function getProfile() {
     //construct the URL and redirect to it
     window.location = '/profile/' + encodeURI(get_profile)
 }
+
+window.addEventListener('DOMContentLoaded', function () {
+    var getProfileButton = document.getElementById('getProfileButton');
+    if (getProfileButton) {
+      getProfileButton.addEventListener('click', getProfile);
+    }
+});
