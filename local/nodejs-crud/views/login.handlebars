@@ -1,5 +1,54 @@
-<form id='get_profile_form' action='' method=''>
+<head>
+    <meta charset="utf-8" >
+    <!-- Tab name -->
+    <title>Craft Center Main Page</title>
+    <link rel="stylesheet" href="login-index-style.css" type="text/css">
+</head>
+<body>
+  <!-- Orange top bar with OSU logo Image-->
+  <div class="top-orange-container">
+  <img class= "osu-logo-img" src="images/osuLogo.png" alt="osuLogo-img">
+  </div>
+
+<!-- Black top bar with text -->
+  <div class="top-black-container">
+    <p>Craft Center Registration Tool</p>
+  </div>
+
+<!-- Background and Login box-->
+  <div class="bottom-container">
+    <!-- Login box -->
+    <div class="login-box">
+      <!-- LOGIN -->
+      <p class="login-text-title">LOGIN</p>
+
+      <!-- Horizontal line -->
+      <hr width = "50%">
+
+      <!-- OSU Students, Staff, Faculty, and Affliates -->
+      <p class="OSU-people-text-subhead">OSU Students, Staff, Faculty, and Affliates</p>
+
+      <!-- OSU Login Buttom -->
+      <a href="loginInput.html">
+        <button class = "OSU-login-button" type="button">OSU Login</button>
+      </a>
+
+      <!-- Horizontal Line -->
+      <hr width = "50%">
+
+      <!-- General Public -->
+      <p class="general-public-text-subhead">General Public</p>
+
+      <!-- Non-OSU Login Button -->
+      <button class = "non-OSU-login-button" type="button">Non-OSU Login</button>
+    </div>
+  </div>
+
+  <form id='get_profile_form' action='' method=''>
     <label> Enter your OSU_ID to get your profile:</label>
-    <input id='get_profile' type='text' name='get_profile' value=''/>
+    <input id='get_profile' type='text' name='get_profile'>
     <button type="button" id='getProfileButton'>Search</button>
 </form>
+
+
+</body>

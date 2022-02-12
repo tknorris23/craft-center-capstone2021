@@ -70,7 +70,7 @@ router.get('/', function(req, res){
 router.get('/search/:s', function(req, res){
     var callbackCount = 0;
     var context = {};
-    context.jsscripts = ["serch_users_classes.js"];
+    context.jsscripts = ["search_users_classes.js"];
     var mysql = req.app.get('mysql');
     searchUsersClasses(req, res, mysql, context, complete);
     getUsers(req, res, mysql, context, complete);

@@ -48,8 +48,6 @@ function getForms(req, res, mysql, context, complete){
     });
 }
 
-
-
 router.get('/', function(req, res){
     var callbackCount = 0;
     var context = {};
@@ -70,7 +68,7 @@ router.get('/', function(req, res){
 router.get('/search/:s', function(req, res){
     var callbackCount = 0;
     var context = {};
-    context.jsscripts = ["serch_users_forms.js"];
+    context.jsscripts = ["search_users_forms.js"];
     var mysql = req.app.get('mysql');
     searchUsersForms(req, res, mysql, context, complete);
     getUsers(req, res, mysql, context, complete);

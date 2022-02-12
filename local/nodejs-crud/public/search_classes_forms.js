@@ -1,6 +1,13 @@
-function searchClassesByCategory() {
-    //get the category 
-    var category_search_string  = document.getElementById('category_search_string').value
+function searchClassesForms() {
+    //get the search string 
+    var search_classes_forms = document.getElementById('search_classes_forms').value
     //construct the URL and redirect to it
-    window.location = '/classes_forms/search/' + encodeURI(category_search_string)
+    window.location = '/classes_forms/search/' + encodeURI(search_classes_forms)
 }
+
+window.addEventListener('DOMContentLoaded', function () {
+    var searchClassesFormsButton = document.getElementById('searchClassesFormsButton');
+    if (searchClassesFormsButton) {
+      searchClassesFormsButton.addEventListener('click', searchClassesForms);
+    }
+});

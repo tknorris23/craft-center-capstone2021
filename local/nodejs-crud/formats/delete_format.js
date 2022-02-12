@@ -7,3 +7,5 @@ function deleteForm(form_ID){
         }
     })
 }
+
+<td><button onclick="deleteForm({{form_ID}})">Delete</button></td>

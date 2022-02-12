@@ -1,15 +1,10 @@
-<html>
-{{#each foo}}
-{{this}}
-{{/each}}
-
 <h2><a href='/'>Back to Home Page</a></h2>
 
-<form id='search_users_forms' action='' method=''>
+<form id='search_users_forms_form' action='' method=''>
 <!--- this form does not submit directly, the button handles all the interaction with backend -->
     <label> Search users for first name starting with:</label>
-    <input id='name_search_string' type='text' name='name_search_string' value=''/>
-    <button type="button" onclick="searchUsersByName()">Search</button>
+    <input id='search_users_forms' type='text' name='search_users_forms'>
+    <button type="button" id="searchUsersFormsButton">Search</button>
 </form>
 
 <h3>Current Users Forms:</h3>
@@ -53,5 +48,3 @@
     <input type="Submit" value="Submit">
  </form>
 <br/>
-
-</html>

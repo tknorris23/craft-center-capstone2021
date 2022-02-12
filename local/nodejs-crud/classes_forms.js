@@ -70,7 +70,7 @@
     router.get('/search/:s', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["serch_classes_forms.js"];
+        context.jsscripts = ["search_classes_forms.js"];
         var mysql = req.app.get('mysql');
         searchClassesForms(req, res, mysql, context, complete);
         getForms(req, res, mysql, context, complete);

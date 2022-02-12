@@ -1,15 +1,10 @@
-<html>
-{{#each foo}}
-{{this}}
-{{/each}}
-
 <h2><a href='/'>Back to Home Page</a></h2>
 
-<form id='search_users_classes' action='' method=''>
+<form id='search_users_classes_form' action='' method=''>
 <!--- this form does not submit directly, the button handles all the interaction with backend -->
     <label> Search users for OSU_ID starting with:</label>
-    <input id='OSU_ID_search_string' type='text' name='OSU_ID_search_string' value=''/>
-    <button type="button" onclick="searchUsersByOSUID()">Search</button>
+    <input id='search_users_classes' type='text' name='search_users_classes'>
+    <button type="button" id="searchUsersClassesButton">Search</button>
 </form>
 
 <h3>Current Users Classes:</h3>
@@ -53,5 +48,3 @@
     <input type="submit" value="Submit">
  </form>
 <br/>
-
-</html>
