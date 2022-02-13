@@ -35,9 +35,6 @@ app.use(sessions({
 
 var session;
 
-
-//app.use(flash());
-
 //get homepage
 app.get('/', function(req, res){
 

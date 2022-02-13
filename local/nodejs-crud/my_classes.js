@@ -4,6 +4,7 @@ var router = express.Router();
 function getMyClasses(req, res, mysql, context, complete){
 
     session = req.session;
+    console.log(session);
 
     var sql = "SELECT user_class.class_ID AS class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time, classes.cost FROM user_class LEFT JOIN users on users.user_ID = user_class.user_ID LEFT JOIN classes ON classes.class_ID = user_class.class_ID WHERE users.user_ID LIKE ? ORDER BY class_ID ASC";
 
