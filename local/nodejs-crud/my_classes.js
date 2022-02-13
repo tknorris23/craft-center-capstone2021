@@ -18,7 +18,8 @@ function getMyClasses(req, res, mysql, context, complete){
     sql = mysql.connection.query(sql,inserts,function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
-            res.end();
+            res.redirect('/my_classes');
+            return;
         }
         context.my_classes = results;
         complete();
@@ -37,7 +38,6 @@ router.get('/', function(req, res){
         }
 
     }
-    
 });
 
 

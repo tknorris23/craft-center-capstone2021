@@ -5,7 +5,8 @@ function getClasses(res, mysql, context, complete){
     mysql.connection.query("SELECT classes.class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time, classes.fee FROM classes", function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
-            res.end();
+            res.redirect('/classes');
+            return;
         }
         context.classes = results;
         complete();
@@ -17,7 +18,6 @@ router.get('/', function(req, res){
     var context = {};
     context.jsscripts = ["delete_class.js"];
     var mysql = req.app.get('mysql');
-    /*
     // req.session is accessible from any page and can have data added to it.
     if (req.session) {
         console.log("Session exists.");
@@ -43,7 +43,6 @@ router.get('/', function(req, res){
         //      Now the viewcount is usable in classes.handlebars under the name 'views'.
         context['views'] = req.session.views['classes']
     }
-    */
     getClasses(res, mysql, context, complete);
     function complete(){
         callbackCount++;
@@ -54,8 +53,8 @@ router.get('/', function(req, res){
     }
     
 });
-/* Adds a class, redirects to the classes page after adding */
 
+/* Adds a class, redirects to the classes page after adding */
 router.post('/', function(req, res){
     console.log(req.body)
     var mysql = req.app.get('mysql');
@@ -63,9 +62,9 @@ router.post('/', function(req, res){
     var inserts = [req.body.class_ID, req.body.category, req.body.section, req.body.description, req.body.instructor, req.body.term, req.body.date, req.body.time, req.body.fee];
     sql = mysql.connection.query(sql,inserts,function(error, results, fields){
         if(error){
-            console.log(JSON.stringify(error))
             res.write(JSON.stringify(error));
-            res.end();
+            res.redirect('/classes');
+            return;
         }else{
             res.redirect('/classes');
         }
@@ -80,13 +79,12 @@ router.delete('/:class_ID', function(req, res){
         if(error){
             res.write(JSON.stringify(error));
             res.status(400);
-            res.end();
+            res.redirect('/classes');
+            return;
         }else{
             res.status(202).end();
         }
     })
 })
-
-
 
 module.exports = router;

@@ -11,14 +11,14 @@ function saveProfile(req, res, mysql, context, complete){
     mysql.connection.query(query, function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
-            res.end();
+            res.redirect('/profile');
+            return;
         }
         try{
             session.user = results[0].user_ID;
         } catch(e){
             console.log('User does not exits. Please try again');
             res.redirect('/login/input');
-            console.log('REDIRECT');
             return;
         }
         session.user = results[0].user_ID;
@@ -45,7 +45,8 @@ function getProfile(req, res, mysql, context, complete){
     mysql.connection.query(query, inserts, function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
-            res.end();
+            res.redirect('/profile');
+            return;
         }
         context.profile = results;
         complete();

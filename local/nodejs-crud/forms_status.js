@@ -19,7 +19,8 @@ function getProfile(req, res, mysql, context, complete){
     mysql.connection.query(query, inserts, function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
-            res.end();
+            res.redirect('/forms_status');
+            return;
         }
         context.profile = results;
         complete();
@@ -38,7 +39,8 @@ function getIncompleteForms(req, res, mysql, context, complete){
     mysql.connection.query(query, inserts, function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
-            res.end();
+            res.redirect('/forms_status');
+            return;
         }
         context.incomplete_forms = results;
         complete();
@@ -57,14 +59,13 @@ function getCompleteForms(req, res, mysql, context, complete){
     mysql.connection.query(query, inserts, function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
-            res.end();
+            res.redirect('/forms_status');
+            return;
         }
         context.complete_forms = results;
         complete();
     });
 }
-
-
 
 router.get('/', function(req, res){
     var callbackCount = 0;

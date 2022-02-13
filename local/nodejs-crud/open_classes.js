@@ -5,7 +5,8 @@ function getClasses(res, mysql, context, complete){
     mysql.connection.query("SELECT classes.class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time, classes.fee FROM classes", function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
-            res.end();
+            res.redirect('/open_classes');
+            return;
         }
         context.open_classes = results;
         complete();
@@ -23,8 +24,6 @@ router.get('/', function(req, res){
         if(callbackCount >= 1){
             res.render('open_classes', context);
         }
-
     }
-    
 });
 module.exports = router;

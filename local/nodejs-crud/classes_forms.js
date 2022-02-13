@@ -5,7 +5,8 @@ function getClassesForms(req, res, mysql, context, complete){
     mysql.connection.query("SELECT class_form.class_ID AS class_ID, classes.category AS category, classes.section AS section, class_form.form_ID AS form_ID, forms.type AS type FROM class_form LEFT JOIN classes on classes.class_ID = class_form.class_ID LEFT JOIN forms ON forms.form_ID = class_form.form_ID ORDER BY class_ID ASC, form_ID ASC;", function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
-            res.end();
+            res.redirect('/classes_forms');
+            return;
         }
         context.classes_forms = results;
         complete();
@@ -18,8 +19,8 @@ function searchClassesForms(req, res, mysql, context, complete){
 
     mysql.connection.query(query, function(error, results, fields){
         if(error){
-            res.write(JSON.stringify(error));
-            res.end();
+            res.redirect('/classes_forms');
+            return;
         }
         context.classes_forms = results;
         complete();
@@ -30,7 +31,8 @@ function getForms(req, res, mysql, context, complete){
     mysql.connection.query("SELECT forms.form_ID, forms.type, forms.link FROM forms", function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
-            res.end();
+            res.redirect('/classes_forms');
+            return;
         }
         context.forms = results;
         complete();
@@ -41,14 +43,13 @@ function getClasses(req, res, mysql, context, complete){
     mysql.connection.query("SELECT classes.class_ID, classes.category, classes.section FROM classes GROUP BY classes.category", function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
-            res.end();
+            res.redirect('/classes_forms');
+            return;
         }
         context.classes = results;
         complete();
     });
 }
-
-
 
 router.get('/', function(req, res){
     var callbackCount = 0;
@@ -83,22 +84,22 @@ router.get('/search/:s', function(req, res){
     }
 });
 
-    /* Adds a class_form relationship, redirects to the class_form page after adding */
-    router.post('/', function(req, res){
-        console.log(req.body.class_ID)
-        console.log(req.body.form_ID)
-        var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO class_form (class_ID, form_ID) VALUES(?, ?)";
-        var inserts = [req.body.class_ID, req.body.form_ID];
-        sql = mysql.connection.query(sql,inserts,function(error, results, fields){
-            if(error){
-                console.log(JSON.stringify(error))
-                res.write(JSON.stringify(error));
-                res.end();
-            }else{
-                res.redirect('/classes_forms');
-            }
-        });
+/* Adds a class_form relationship, redirects to the class_form page after adding */
+router.post('/', function(req, res){
+    console.log(req.body.class_ID)
+    console.log(req.body.form_ID)
+    var mysql = req.app.get('mysql');
+    var sql = "INSERT INTO class_form (class_ID, form_ID) VALUES(?, ?)";
+    var inserts = [req.body.class_ID, req.body.form_ID];
+    sql = mysql.connection.query(sql,inserts,function(error, results, fields){
+        if(error){
+            res.write(JSON.stringify(error));
+            res.redirect('/classes_forms');
+            return;
+        }else{
+            res.redirect('/classes_forms');
+        }
     });
+});
 
 module.exports = router;
