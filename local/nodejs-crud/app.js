@@ -53,6 +53,7 @@ app.use('/login', require('./login.js'));
 app.use('/profile', require('./profile.js'));
 app.use('/my_classes', require('./my_classes.js'));
 app.use('/open_classes', require('./open_classes.js'));
+app.use('/forms_status', require('./forms_status.js'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res) {

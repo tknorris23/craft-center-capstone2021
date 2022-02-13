@@ -5,8 +5,14 @@ function getMyClasses(req, res, mysql, context, complete){
 
     session = req.session;
     console.log(session);
+    
+    if (!session.user){
+        console.log('User must login before viewing their classes');
+        res.redirect('/login');
+        return;
+    }
 
-    var sql = "SELECT user_class.class_ID AS class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time, classes.cost FROM user_class LEFT JOIN users on users.user_ID = user_class.user_ID LEFT JOIN classes ON classes.class_ID = user_class.class_ID WHERE users.user_ID LIKE ? ORDER BY class_ID ASC";
+    var sql = "SELECT user_class.class_ID AS class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time, classes.fee FROM user_class LEFT JOIN users on users.user_ID = user_class.user_ID LEFT JOIN classes ON classes.class_ID = user_class.class_ID WHERE users.user_ID LIKE ? ORDER BY class_ID ASC";
 
     var inserts = [session.user];
     sql = mysql.connection.query(sql,inserts,function(error, results, fields){

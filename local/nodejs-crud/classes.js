@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 function getClasses(res, mysql, context, complete){
-    mysql.connection.query("SELECT classes.class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time, classes.cost FROM classes", function(error, results, fields){
+    mysql.connection.query("SELECT classes.class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time, classes.fee FROM classes", function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
             res.end();
@@ -59,8 +59,8 @@ router.get('/', function(req, res){
 router.post('/', function(req, res){
     console.log(req.body)
     var mysql = req.app.get('mysql');
-    var sql = "INSERT INTO classes (class_ID, category, section, description, instructor, term, date, time, cost) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    var inserts = [req.body.class_ID, req.body.category, req.body.section, req.body.description, req.body.instructor, req.body.term, req.body.date, req.body.time, req.body.cost];
+    var sql = "INSERT INTO classes (class_ID, category, section, description, instructor, term, date, time, fee) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    var inserts = [req.body.class_ID, req.body.category, req.body.section, req.body.description, req.body.instructor, req.body.term, req.body.date, req.body.time, req.body.fee];
     sql = mysql.connection.query(sql,inserts,function(error, results, fields){
         if(error){
             console.log(JSON.stringify(error))

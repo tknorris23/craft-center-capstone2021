@@ -32,6 +32,12 @@ function getProfile(req, res, mysql, context, complete){
     session = req.session;
     //console.log(session);
 
+    if(!session.user){
+        console.log('User must login before viewing their profile');
+        res.redirect('/login');
+        return;
+    }
+
     var query = "SELECT users.user_ID, users.OSU_ID, users.first_name, users.last_name, users.pronouns, users.email, users.alt_email, users.phone_num, users.term, users.membership, users.comments, users.debt FROM users WHERE users.user_ID = ?";
 
     var inserts = [session.user];

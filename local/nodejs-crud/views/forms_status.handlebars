@@ -1,0 +1,54 @@
+<h2><a href='/'>Back to Home Page</a></h2>
+
+{{#each profile}}
+<h4>{{first_name}} {{last_name}}'s incomplete forms:</h4>
+{{/each}}
+
+<table>
+    <thead> 
+        <th>Class ID</th> 
+        <th>Category</th>
+        <th>Section</th>
+        <th>Form ID</th>
+        <th>Form Type</th>
+    </thead> 
+    {{#each incomplete_forms}}
+    <tbody>
+        <tr> 
+            <td>{{class_ID}}</td> 
+            <td>{{category}}</td>
+            <td>{{section}}</td>
+            <td>{{form_ID}}</td>
+            <td>{{type}}</td>
+        </tr> 
+    </tbody> 
+    {{/each}}
+</table>
+
+{{#each profile}}
+<h4>{{first_name}} {{last_name}}'s completed forms:</h4>
+{{/each}}
+
+<table>
+    <thead> 
+        <th>Class ID</th> 
+        <th>Category</th>
+        <th>Section</th>
+        <th>Form ID</th>
+        <th>Form Type</th>
+    </thead> 
+    {{#each complete_forms}}
+    <tbody>
+        <tr> 
+            <td>{{class_ID}}</td> 
+            <td>{{category}}</td>
+            <td>{{section}}</td>
+            <td>{{form_ID}}</td>
+            <td>{{type}}</td>
+        </tr> 
+    </tbody> 
+    {{/each}}
+</table>
+
+
+

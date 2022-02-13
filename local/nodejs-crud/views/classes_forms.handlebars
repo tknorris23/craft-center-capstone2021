@@ -32,3 +32,19 @@
         {{/each}} 
     </tbody> 
 </table>
+
+<h3>Add forms to classes:</h3>
+<form id="addformsclasses" action="/classes_forms" method="post">
+    User: <select name="class_ID"> 
+        {{#each classes}}
+        <option value="{{class_ID}}">{{category}} {{section}}</option>
+        {{/each}}
+    </select><br>
+    Class: <select name="form_ID"> 
+        {{#each forms}}
+        <option value="{{form_ID}}">{{type}}</option>
+        {{/each}}
+    </select><br>
+    <input type="submit" value="Submit">
+ </form>
+<br/>

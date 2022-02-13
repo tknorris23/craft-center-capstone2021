@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 function getClasses(res, mysql, context, complete){
-    mysql.connection.query("SELECT classes.class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time, classes.cost FROM classes", function(error, results, fields){
+    mysql.connection.query("SELECT classes.class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time, classes.fee FROM classes", function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
             res.end();
