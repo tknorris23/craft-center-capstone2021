@@ -17,6 +17,7 @@ router.get('/', function(req, res){
     var context = {};
     context.jsscripts = ["delete_class.js"];
     var mysql = req.app.get('mysql');
+    /*
     // req.session is accessible from any page and can have data added to it.
     if (req.session) {
         console.log("Session exists.");
@@ -42,6 +43,7 @@ router.get('/', function(req, res){
         //      Now the viewcount is usable in classes.handlebars under the name 'views'.
         context['views'] = req.session.views['classes']
     }
+    */
     getClasses(res, mysql, context, complete);
     function complete(){
         callbackCount++;
@@ -52,8 +54,6 @@ router.get('/', function(req, res){
     }
     
 });
-
-
 /* Adds a class, redirects to the classes page after adding */
 
 router.post('/', function(req, res){
