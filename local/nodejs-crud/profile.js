@@ -27,7 +27,7 @@ function getProfile(req, res, mysql, context, complete){
 router.get('/:s', function(req, res){
     var callbackCount = 0;
     var context = {};
-    //context.jsscripts = ["get_profile.js"];
+    context.jsscripts = ["get_profile.js"];
     var mysql = req.app.get('mysql');
     getProfile(req, res, mysql, context, complete);
     function complete(){
