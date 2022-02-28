@@ -1,22 +1,21 @@
 var express = require('express');
 var router = express.Router();
 
-function saveProfile(req, res, mysql, context, complete){
+function saveProfile(req, res, mysql, context, complete) {
 
     session = req.session;
-    //console.log(session);
 
     var query = "SELECT users.user_ID FROM users WHERE users.OSU_ID = " + mysql.connection.escape(req.params.s + '%');
 
-    mysql.connection.query(query, function(error, results, fields){
-        if(error){
+    mysql.connection.query(query, function (error, results, fields) {
+        if (error) {
             res.write(JSON.stringify(error));
             res.redirect('/profile');
             return;
         }
-        try{
+        try {
             session.user = results[0].user_ID;
-        } catch(e){
+        } catch (e) {
             console.log('User does not exits. Please try again');
             res.redirect('/login/input');
             return;
@@ -27,12 +26,11 @@ function saveProfile(req, res, mysql, context, complete){
     });
 }
 
-function getProfile(req, res, mysql, context, complete){
+function getProfile(req, res, mysql, context, complete) {
 
     session = req.session;
-    //console.log(session);
 
-    if(!session.user){
+    if (!session.user) {
         console.log('User must login before viewing their profile');
         res.redirect('/login');
         return;
@@ -42,8 +40,8 @@ function getProfile(req, res, mysql, context, complete){
 
     var inserts = [session.user];
 
-    mysql.connection.query(query, inserts, function(error, results, fields){
-        if(error){
+    mysql.connection.query(query, inserts, function (error, results, fields) {
+        if (error) {
             res.write(JSON.stringify(error));
             res.redirect('/profile');
             return;
@@ -53,31 +51,72 @@ function getProfile(req, res, mysql, context, complete){
     });
 }
 
-router.get('/:s', function(req, res){
+function updateProfile(req, res, mysql, context, complete) {
+
+    session = req.session;
+
+    console.log(req.body)
+    var mysql = req.app.get('mysql');
+    var sql = "UPDATE users SET first_name = ?, last_name = ?, pronouns = ?, email = ?, alt_email = ?, phone_num = ? WHERE user_ID = ?";
+    var inserts = [req.body.first_name, req.body.last_name, req.body.pronouns, req.body.email, req.body.alt_email, req.body.phone_num, session.user];
+
+    mysql.connection.query(sql, inserts, function (error, results, fields) {
+        if (error) {
+            res.write(JSON.stringify(error));
+            res.redirect('/profile');
+            return;
+        } else {
+            res.end;
+        }
+    });
+}
+
+
+router.get('/:s', function (req, res) {
     var callbackCount = 0;
     var context = {};
     context.jsscripts = ["get_profile.js"];
     var mysql = req.app.get('mysql');
     saveProfile(req, res, mysql, context, complete);
-    function complete(){
+    function complete() {
         callbackCount++;
-        if(callbackCount >= 1){
+        if (callbackCount >= 1) {
             res.redirect('/profile');
         }
     }
 });
 
-router.get('/', function(req, res){
+router.get('/', function (req, res) {
     var callbackCount = 0;
     var context = {};
+    context.jsscripts = ["update_profile.js"];
     var mysql = req.app.get('mysql');
     getProfile(req, res, mysql, context, complete);
-    function complete(){
+    function complete() {
         callbackCount++;
-        if(callbackCount >= 1){
+        if (callbackCount >= 1) {
             res.render('profile', context);
         }
     }
+});
+
+router.put('/', function(req, res){
+
+    session = req.session;
+
+    var mysql = req.app.get('mysql');
+    console.log(req.body)
+    console.log(session.user)
+    var sql = "UPDATE users SET first_name = ?, last_name = ?, pronouns = ?, email = ?, alt_email = ?, phone_num = ? WHERE user_ID = ?";
+    var inserts = [req.body.firstName, req.body.lastName, req.body.stuPro, req.body.onidEmail, req.body.altEmails, req.body.phoneNum, session.user];
+    mysql.connection.query(sql, inserts, function (error, results, fields) {
+        if (error) {
+            res.write(JSON.stringify(error));
+            res.end();
+            return;
+        }
+        res.redirect('/profile');
+    });
 });
 
 module.exports = router;
