@@ -15,13 +15,14 @@ function getUsersForms(req, res, mysql, context, complete){
 
 //function to search for user class relationships by name
 function searchUsersForms(req, res, mysql, context, complete){
-    var query = "SELECT user_form.user_ID AS user_ID, users.first_name AS first_name, users.last_name AS last_name, user_form.form_ID AS form_ID, forms.type, forms.link AS type FROM user_form LEFT JOIN users on users.user_ID = user_form.user_ID LEFT JOIN forms ON forms.form_ID = user_form.form_ID WHERE users.first_name LIKE " + mysql.connection.escape(req.params.s + '%');
+    var query = "SELECT user_form.user_ID AS user_ID, users.OSU_ID, users.first_name AS first_name, users.last_name AS last_name, user_form.form_ID AS form_ID, forms.type, forms.link AS type FROM user_form LEFT JOIN users on users.user_ID = user_form.user_ID LEFT JOIN forms ON forms.form_ID = user_form.form_ID WHERE users.first_name LIKE " + mysql.connection.escape(req.params.s + '%');
 
     mysql.connection.query(query, function(error, results, fields){
         if(error){
             res.redirect('/users_forms');
             return;
         }
+        console.log(results);
         context.users_forms = results;
         complete();
     });

@@ -1,10 +1,28 @@
 var express = require('express');
 var router = express.Router();
 
-function getClasses(res, mysql, context, complete){
-    mysql.connection.query("SELECT classes.class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time, classes.fee FROM classes", function(error, results, fields){
+function getClasses(req, res, mysql, context, complete){
+    var query = "SELECT classes.class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time, classes.fee FROM classes";
+
+
+    mysql.connection.query(query, function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));
+            res.redirect('/classes');
+            return;
+        }
+        context.classes = results;
+        complete();
+    });
+}
+
+//function to search for user class relationships by name
+// copy this for the search bar
+function searchClasses(req, res, mysql, context, complete){
+    var query = "SELECT classes.class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time, classes.fee FROM classes WHERE classes.section LIKE " + mysql.connection.escape('%' + req.params.s + '%');
+
+    mysql.connection.query(query, function(error, results, fields){
+        if(error){
             res.redirect('/classes');
             return;
         }
@@ -16,34 +34,9 @@ function getClasses(res, mysql, context, complete){
 router.get('/', function(req, res){
     var callbackCount = 0;
     var context = {};
-    context.jsscripts = ["delete_class.js"];
+    context.jsscripts = ["delete_class.js", "search_class.js"];
     var mysql = req.app.get('mysql');
-    // req.session is accessible from any page and can have data added to it.
-    if (req.session) {
-        console.log("Session exists.");
-        console.log(req.session);
-        // If the variable views doesn't exist, this will create it as a new dict.
-        // This dict is stored in the session and remains within session
-        //      even if the user moves to other pages.
-        if (!req.session.views) {
-            req.session.views = {}
-        }
-        
-        // If the dict has no entry for the classes page, this creates one and sets it to 0.
-        if (!req.session.views['classes']) {
-            req.session.views['classes'] = 0;
-        }
-        
-        // This will increment the classes view counter.
-        req.session.views['classes'] = (req.session.views['classes'] || 0) + 1;
-
-        // The context variable returned by this function is what is used by Handlebars
-        //      to fill data into its template files. To create a new variable for use
-        //      in templating, we add to the context dictionary.
-        //      Now the viewcount is usable in classes.handlebars under the name 'views'.
-        context['views'] = req.session.views['classes']
-    }
-    getClasses(res, mysql, context, complete);
+    getClasses(req, res, mysql, context, complete);
     function complete(){
         callbackCount++;
         if(callbackCount >= 1){
@@ -51,7 +44,21 @@ router.get('/', function(req, res){
         }
 
     }
-    
+});
+
+router.get('/search/:s', function(req, res){
+    var callbackCount = 0;
+    var context = {};
+    context.jsscripts = ["search_class.js", "delete_class.js"];
+    var mysql = req.app.get('mysql');
+    getClasses(req, res, mysql, context, complete);
+    searchClasses(req, res, mysql, context, complete);
+    function complete(){
+        callbackCount++;
+        if(callbackCount >= 2){
+            res.render('classes', context);
+        }
+    }
 });
 
 /* Adds a class, redirects to the classes page after adding */

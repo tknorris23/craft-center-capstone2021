@@ -1,18 +1,26 @@
 <h2><a href='/'>Back to Home Page</a></h2>
 
+
 <h3>Add new classes:</h3>
 <form id="addclass" action="/classes" method="post">
-    Category: <input type="text" name="category"><br>
-    Title: <input type="text" name="section"><br>
-    Instructor: <input type="text" name="instructor"><br>
-    Term Offered: <input type="text" name="term"><br>
-    Date Range: <input type="text" name="date"><br>
-    Time: <input type="text" name="time"><br>
-    Description: <input type="text" name="description"><br>
-    Fee: <input type="number" name="fee"><br>
+    Category: <input type="text" name="category" required><br>
+    Title: <input type="text" name="section" required><br>
+    Instructor: <input type="text" name="instructor" required><br>
+    Term Offered: <input type="text" name="term" required><br>
+    Date Range: <input type="text" name="date" required><br>
+    Time: <input type="text" name="time" required><br>
+    Description: <input type="text" name="description" required><br>
+    Fee: <input type="number" name="fee" required><br>
     <input type="submit" value="Submit">
  </form>
 <br/>
+
+<form id='search_classes_form' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search classes for section starting with:</label>
+    <input id="search_classes" input type="text" name="search_classes" required>
+    <button type="button" id="searchClassesButton">Search</button>
+</form>
 
 
 <h3>Current Classes:</h3>
@@ -45,8 +53,4 @@
         </tr> 
         {{/each}} 
     </tbody> 
-</table> 
-<!-- below, we use the 'views' key in the context dict
-     to dynamically fill this view counter. -->
-<h3>Session Example</h3>
-<p>This page has been visted by you {{views}} times.</p>
+</table>
