@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Craft Center - My Profile</title>
+    <link rel="stylesheet" href="stylesheets/dashboard-style.css"/>
+</head>
+<body>
+
+  <!-- Div Bar for OSU w/ logo -->
+  <div id="osuBar">
+    <img src="stylesheets/images/osuLogo.png" alt="OregonState" id="osuLogo">
+  </div>
+  <!-- Div bar for Craft Center name -->
+  <div id="blackBar">
+    <p id="barText">Craft Center Student View</p>
+  </div>
+
+  <!-- Navigation Bar of Craft Center -->
+  <div class="navBar">
+    <ul>
+      <li><a href="/">HOME</a></li>
+      <li><a href="/profile">MY PROFILE</a></li>
+      <li><a href="/my_classes">MY CLASSES</a></li>
+      <li><a href="/open_classes">CLASS REGISTRATION</a></li>
+      <li><a href="/membership">MEMBERSHIP REGISTRATION</a></li>
+    </ul>
+  </div>
+
+  <!-- Add in a line breaker to break off the the nav from the main content of page -->
+  <br>
+
+  <!-- Add in a div box to start the Student Dashboard -->
+  <div class="fastMenu">
+    <p id="titleMain">Dashboard</p>
+    <br>
+    <p id="greeting">Hello!</p>
+    <p id="welcome">Welcome Back {{profile.first_name}} {{profile.last_name}}</p>
+    <br><br><br>
+
+    <!-- Add in quick links button -->
+    <div>
+      <p id="universalupdate">EXPLORE</p>
+      <p id="quickLink">Quick Links</p>
+      <br>
+      <input type="button" id="myRegistration" onclick="window.location.href='/membership'" value="Register Member">
+      <input type="button" id="myClass" onclick="window.location.href='/my_classes'" value="My Class">
+      <input type="button" id="myProfile" onclick="window.location.href='/profile'" value="My Profile">
+      <br>
+    </div>
+  </div>
+
+  <br>
+
+  <!-- Add another div box for the announcement -->
+  <div class="announceMenu">
+    <p id="titleAnnoun">Annoucement</p>
+    <br>
+
+    <p id="universalupdate">NEWS</p>
+    <p id="announceSub">Annoucement</p>
+    <br>
+    <input type="text" name="announceText" id="announceText" value="Announcement goes here">
+    <br>
+  </div>
+
+</body>
+</html>

@@ -33,16 +33,9 @@ app.use(sessions({
     secret: 'CraftCenterRocks'
 }));
 
-var session;
+//var session;
 
-//get homepage
-app.get('/', function(req, res){
-
-  session = req.session;
-  session.user;
-  res.status(200).render('home', {});
-})
-
+app.use('/', require('./student_dashboard.js'));
 app.use('/users', require('./users.js'));
 app.use('/classes', require('./classes.js'));
 app.use('/forms', require('./forms.js'));
@@ -54,6 +47,11 @@ app.use('/profile', require('./profile.js'));
 app.use('/my_classes', require('./my_classes.js'));
 app.use('/open_classes', require('./open_classes.js'));
 app.use('/forms_status', require('./forms_status.js'));
+//app.use('/membership', require('./membership.js'));
+
+app.get('/membership', function(req, res){
+  res.status(200).render('membership', {});
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res) {

@@ -1,0 +1,45 @@
+  <head>
+    <meta charset="utf-8">
+    <title>Craft Center - Membership Registration</title>
+    <link rel="stylesheet" href="stylesheets/membership-style.css"/>
+  </head>
+  <body>
+    <!-- Div Bar for OSU w/ logo -->
+    <div id="osuBar">
+      <img src="stylesheets/images/osuLogo.png" alt="OregonState" id="osuLogo">
+    </div>
+    <!-- Div bar for Craft Center name -->
+    <div id="blackBar">
+      <p id="barText">Craft Center Student View</p>
+    </div>
+
+    <!-- Navigation Bar of Craft Center -->
+    <div class="navBar">
+      <nav>
+        <ul>
+          <li><a href="/">HOME</a></li>
+          <li><a href="/profile">MY PROFILE</a></li>
+          <li><a href="/my_classes">MY CLASSES</a></li>
+          <li><a href="/open_classes">CLASS REGISTRATION</a></li>
+          <li><a href="/membership">MEMBERSHIP REGISTRATION</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Add in a line breaker to break off the the nav from the main content of page -->
+    <br><br><br>
+
+    <!-- Add in a box for membership registration -->
+    <div class='membershipDiv'>
+      <p id='titleCard'>Membership Registration</p>
+
+      <p id="memberNote">Note: You must register every term to become a member at the Craft Center</p>
+      <br>
+
+      <!-- Add the register button -->
+      <button class="registerAlready" type="button" onclick="window.location.href='/'">If Already Register, Click Here</button>
+      <button class="registerButton" type="button" onclick=" window.open('https://oregonstate.qualtrics.com/jfe/form/SV_3W7iXXSsaeEZNVI', '_blank'); return false;">Click Here to Register</button>
+    </div>
+
+  </body>
+</html>

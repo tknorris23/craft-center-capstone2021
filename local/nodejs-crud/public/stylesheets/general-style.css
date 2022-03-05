@@ -1,0 +1,14 @@
+.top-orange-container {
+    background-color: #D73F09;
+    height: 100px;
+    text-align: left;
+}
+
+p {
+    margin-top: 0;
+    padding-top: 10px;
+    padding-left: 10px;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 20px;
+}

@@ -51,27 +51,6 @@ function getProfile(req, res, mysql, context, complete) {
     });
 }
 
-function updateProfile(req, res, mysql, context, complete) {
-
-    session = req.session;
-
-    console.log(req.body)
-    var mysql = req.app.get('mysql');
-    var sql = "UPDATE users SET first_name = ?, last_name = ?, pronouns = ?, email = ?, alt_email = ?, phone_num = ? WHERE user_ID = ?";
-    var inserts = [req.body.first_name, req.body.last_name, req.body.pronouns, req.body.email, req.body.alt_email, req.body.phone_num, session.user];
-
-    mysql.connection.query(sql, inserts, function (error, results, fields) {
-        if (error) {
-            res.write(JSON.stringify(error));
-            res.redirect('/profile');
-            return;
-        } else {
-            res.end;
-        }
-    });
-}
-
-
 router.get('/:s', function (req, res) {
     var callbackCount = 0;
     var context = {};
@@ -81,7 +60,7 @@ router.get('/:s', function (req, res) {
     function complete() {
         callbackCount++;
         if (callbackCount >= 1) {
-            res.redirect('/profile');
+            res.redirect('/');
         }
     }
 });

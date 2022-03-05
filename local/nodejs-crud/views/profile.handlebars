@@ -2,19 +2,18 @@
     <meta charset="utf-8" />
     <title>Craft Center - My Profile</title>
     <link rel="stylesheet" href="/stylesheets/profile-style.css"/>
-</head>
-
-<body>
-
-  <!-- Div Bar for OSU w/ logo -->
+    <title>Craft Center - My Class</title>
+    <!-- Div Bar for OSU w/ logo -->
   <div id="osuBar">
-    <img src="/stylesheets/images/osuLogo.png" alt="OregonState" id="osuLogo">
+    <img src="stylesheets/images/osuLogo.png" alt="OregonState" id="osuLogo">
   </div>
   <!-- Div bar for Craft Center name -->
   <div id="blackBar">
     <p id="barText">Craft Center Student View</p>
   </div>
+</head>
 
+<body>
   <!-- Navigation Bar of Craft Center -->
   <div class="navBar">
     <nav>
@@ -23,7 +22,7 @@
         <li><a href="/profile">MY PROFILE</a></li>
         <li><a href="/my_classes">MY CLASSES</a></li>
         <li><a href="/open_classes">CLASS REGISTRATION</a></li>
-        <!--li><a href="membership-register.html">MEMBERSHIP REGISTRATION</a></li -->
+        <li><a href="/membership">MEMBERSHIP REGISTRATION</a></li>
       </ul>
     </nav>
   </div>
@@ -77,12 +76,12 @@
     <!--form class="contactForm" action="index.html" method="post"><!-->
       <div class='ONIDemail'>
         <p id="emailID">ONID Email:</p>
-        <input type="email" name="onidEmail" value="{{email}}">
+        <input type="text" name="onidEmail" value="{{email}}">
       </div>
 
       <div class='altEmail'>
         <p id='altContact'>Alternative Email:</p>
-        <input type="email" name='altEmails' value="{{alt_email}}">
+        <input type="text" name='altEmails' value="{{alt_email}}">
       </div>
 
       <p id="phoneID">Phone Number:</p>
