@@ -36,34 +36,33 @@
     <p id="userInfo">User Information</p>
     <hr class="solidLine">
 
-    {{#each profile}}
     <!-- Create a form -->
     <form id="profileForm" class="profileForm" action="/profile" method="post">
       <div class="fname">
         <p id="fnameid">First Name:</p>
-        <input type="text" name="firstName" value="{{first_name}}">
+        <input type="text" name="firstName" value="{{profile.first_name}}">
       </div>
 
       <div class="lname">
         <p id="lnameid">Last Name:</p>
-        <input type="text" name="lastName" value="{{last_name}}">
+        <input type="text" name="lastName" value="{{profile.last_name}}">
       </div>
 
       <br>
 
       <div class="memberT">
         <p id="membershipT">Membership Type:</p>
-        <input type="text" name="memT" value="{{membership}}">
+        <input type="text" name="memT" value="{{profile.membership}}">
       </div>
 
       <div class="Pronoun">
         <p id="studentP">Prefer Pronoun:</p>
-        <input type="text" name="stuPro" placeholcer="pronouns" value="{{pronouns}}">
+        <input type="text" name="stuPro" placeholcer="pronouns" value="{{profile.pronouns}}">
       </div>
 
       <div class="onidID">
         <p id="osuID">OSU ONID:</p>
-        <input type="text" name="osuOnid" value="{{OSU_ID}}">
+        <input type="text" name="osuOnid" value="{{profile.OSU_ID}}">
       </div>
     <!--/form><!-->
 
@@ -76,16 +75,16 @@
     <!--form class="contactForm" action="index.html" method="post"><!-->
       <div class='ONIDemail'>
         <p id="emailID">ONID Email:</p>
-        <input type="text" name="onidEmail" value="{{email}}">
+        <input type="text" name="onidEmail" value="{{profile.email}}">
       </div>
 
       <div class='altEmail'>
         <p id='altContact'>Alternative Email:</p>
-        <input type="text" name='altEmails' value="{{alt_email}}">
+        <input type="text" name='altEmails' value="{{profile.alt_email}}">
       </div>
 
       <p id="phoneID">Phone Number:</p>
-      <input type="text" name="phoneNum" value="{{phone_num}}">
+      <input type="text" name="phoneNum" value="{{profile.phone_num}}">
     </form>
 
     <br><br>
@@ -102,7 +101,7 @@
 
 
 
-<h2><a href='/'>Back to Home Page</a></h2>
+{{!-- <h2><a href='/'>Back to Home Page</a></h2>
 
 <h4><a href='/my_classes'>View my classes</a></h4>
 
@@ -138,6 +137,6 @@
             <td>{{term}}</td>
             <td>{{debt}}</td>
         </tr> 
-        {{/each}} 
+
     </tbody> 
-</table>
+</table> --}}

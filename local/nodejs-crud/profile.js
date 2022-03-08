@@ -46,7 +46,7 @@ function getProfile(req, res, mysql, context, complete) {
             res.redirect('/profile');
             return;
         }
-        context.profile = results;
+        context.profile = results[0];
         complete();
     });
 }
