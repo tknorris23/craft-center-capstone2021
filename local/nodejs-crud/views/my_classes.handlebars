@@ -1,37 +1,37 @@
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Craft Center - My Class</title>
-    <link rel="stylesheet" href="/stylesheets/myclass-style.css" type="text/css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Asap&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <!-- Orange top bar with OSU logo Image-->
-    <div class="top-orange-container">
-    <img class= "osu-logo-img" src="stylesheets/images/osuLogo.png" alt="osuLogo-img">
-    </div>
 
-    <!-- Black top bar with text -->
-      <div class="top-black-container">
-        <p>Craft Center Registration Tool</p>
-      </div>
+<head>
+  <meta charset="utf-8">
+  <title>Craft Center - My Class</title>
+  <link rel="stylesheet" href="/stylesheets/myclass-style.css" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Asap&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Orange top bar with OSU logo Image-->
+  <div class="top-orange-container">
+    <img class="osu-logo-img" src="stylesheets/images/osuLogo.png" alt="osuLogo-img">
+  </div>
+
+  <!-- Black top bar with text -->
+  <div class="top-black-container">
+    <p>Craft Center Registration Tool</p>
+  </div>
 
   <!-- Navigation Bar of Craft Center -->
-  <div class="nav-box">
-    <div class="nav-container">
-      <nav>
-        <ul>
-          <li><a href="/">HOME</a></li>
-          <li><a href="/profile">MY PROFILE</a></li>
-          <li><a href="/my_classes">MY CLASSES</a></li>
-          <li><a href="open_classes">CLASS REGISTRATION</a></li>
-          <li><a href="/membership">MEMBERSHIP REGISTRATION</a></li>
-        </ul>
-      </nav>
-    </div>
-      </div>
+  <div class="navBar">
+    <nav>
+      <ul>
+        <li><a href="/">HOME</a></li>
+        <li><a href="/profile">MY PROFILE</a></li>
+        <li><a href="/my_classes">MY CLASSES</a></li>
+        <li><a href="/open_classes">CLASS REGISTRATION</a></li>
+        <li><a href="/membership">MEMBERSHIP REGISTRATION</a></li>
+      </ul>
+    </nav>
+  </div>
 
   <!-- My Classes Box -->
   <div class="text-container">
@@ -39,56 +39,81 @@
       <!-- Orange bar in My Classes box -->
       <div class="class-orange-heading">
         <!-- Title in My Classes box -->
-        <h2 class= "myClasses-heading">My Classes</h2>
+        <h2 class="myClasses-heading">My Classes</h2>
       </div>
       <!-- Classes info boxes -->
       <div class="class-info-boxes">
-        <ul>
-          <li>Course</li>
-          <li>Category</li>
-          <li>Section</li>
-          <li>Fee</li>
-          <li>Length</li>
-          <li>Instructor</li>
-        </ul>
+        <div class="box">Course</div>
+        <div class="box">Category</div>
+        <div class="box">Fee</div>
+        <div class="box">Length</div>
+        <div class="box">Instructor</div>
       </div>
-      <hr width = "100%">
+      <hr width="100%">
+
       <div class="content">
-        <p class= "no-class-message">No Classes Added</p>
-        <button class = "add-class-button" type="button">Add</button>
+        <p class="student-note">
+          <b>Note: Class Registation can only be completed once students meets with front desk at Craft Center
+            to complete fee payment. <b>
+        </p>
+        <div class="display-classes">
+          {{#each my_classes}}
+          <div class="class-result-display-boxes">
+            <div>{{section}}</div>
+            <div>{{category}}</div>
+            <div>${{fee}}</div>
+            <div>{{date}}
+              <p>{{time}}</p>
+            </div>
+            <div> {{instructor}}
+
+              {{!-- <p> (she/her/they/them) </p> --}}
+
+            </div>
+
+
+          </div>
+          {{!-- <button class="edit-class-button" type="button">Edit</button> --}}
+          {{/each}}
+        </div>
       </div>
+
 
     </div>
+
+
   </div>
 
-  </body>
-
+</body>
+{{!--
 <h2><a href='/'>Back to Home Page</a></h2>
 
 <h3>Current Classes:</h3>
 <table>
-    <thead> 
-        <th>Class ID</th> 
-        <th>Category</th>
-        <th>Section</th>
-        <th>Instructor</th>
-        <th>Term</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Fee</th>
-        <th>Description</th>
-    </thead> 
-    <tbody>
-        {{#each my_classes}} 
-        <tr> 
-            <td>{{class_ID}}</td> 
-            <td>{{category}}</td> 
-            <td>{{section}}</td>
-            <td>{{instructor}}</td>
-            <td>{{term}}</td>
-            <td>{{date}}</td>
-            <td>{{time}}</td>
-            <td>${{fee}}</td>
-            <td>{{description}}</td>
-        </tr> 
-        {{/each}}
+  <thead>
+    <th>Class ID</th>
+    <th>Category</th>
+    <th>Section</th>
+    <th>Instructor</th>
+    <th>Term</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Fee</th>
+    <th>Description</th>
+  </thead>
+  <tbody>
+    {{#each my_classes}}
+    <tr>
+      <td>{{class_ID}}</td>
+      <td>{{category}}</td>
+      <td>{{section}}</td>
+      <td>{{instructor}}</td>
+      <td>{{term}}</td>
+      <td>{{date}}</td>
+      <td>{{time}}</td>
+      <td>${{fee}}</td>
+      <td>{{description}}</td>
+    </tr>
+    {{/each}}
+
+    --}}

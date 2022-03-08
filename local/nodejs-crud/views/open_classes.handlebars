@@ -1,9 +1,150 @@
+<head>
+  <meta charset="utf-8">
+  <title>Craft Center - Class Registration</title>
+  <link rel="stylesheet" href="stylesheets/class-register-style.css" />
+
+</head>
+
+<body>
+
+  <!-- Div Bar for OSU w/ logo -->
+  <div id="osuBar">
+    <img src="stylesheets/images/osuLogo.png" alt="OregonState" id="osuLogo">
+  </div>
+  <!-- Div bar for Craft Center name -->
+  <div id="blackBar">
+    <p id="barText">Craft Center Student View</p>
+  </div>
+
+  <!-- Navigation Bar of Craft Center -->
+  <div class="navBar">
+    <nav>
+      <ul>
+        <li><a href="/">HOME</a></li>
+        <li><a href="/profile">MY PROFILE</a></li>
+        <li><a href="/my_classes">MY CLASSES</a></li>
+        <li><a href="open_classes">CLASS REGISTRATION</a></li>
+        <li><a href="/membership">MEMBERSHIP REGISTRATION</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="class-registration-container">
+    <!-- Orange bar in My Classes box -->
+    <div class="class-orange-heading">
+      <!-- Title in My Classes box -->
+      <h2 class="class-register-heading">Class Registration</h2>
+    </div>
+    <p> <b>Note: Class Registation can only be completed once students meets with front desk at Craft Center
+      to complete fee payment. <b></p>
+
+    <div class="search-box">
+      <div class="search-bar-container">
+        <!-- <input id="searchbar" onkeyup="search_animal()" type="text" placeholder="Search..." class ="textbox-search-bar" name="searchbar"> -->
+        <input id="searchbar" onkeyup="search_animal()" type="text" placeholder="Search..." class ="textbox-search-bar" name="searchbar">
+      </div>
+
+      <div class="search-dropdowns-container">
+        <!-- <form name="form1" id="form1" action="/action_page.php"> -->
+        <form action="#" method="post">
+            <div class="select-box">
+              Term:
+              <select>
+                <!-- <option value="" selected>All Terms</option> -->
+                <option>All Terms</option>
+                <option>Winter 2022</option>
+                <option>Spring 2022</option>
+                <option>Summer 2022</option>
+                <option>Spring 2022</option>
+              </select>
+            </div>
+
+            <div class="select-box">
+              Category:
+              <select>
+                <option>Select</option>
+                <option>Ceramics</option>
+                <option>Fiber Arts</option>
+                <option>Glass</option>
+                <option>Jewelry</option>
+                <option>Paper Arts</option>
+                <option>Photography</option>
+                <option>Woodworking</option>
+              </select>
+            </div>
+
+            <div class="select-box">
+              Fee:
+              <select>
+                <!-- <option value="" selected>All Terms</option> -->
+                <option>Any Course Fee</option>
+                <option>Free for Fee Paying Students</option>
+                <option>$20 - $45</option>
+                <option>$45 - $100</option>
+              </select>
+            </div>
+        </form>
+      </div>
+
+      <!-- <ul id="classesList"></ul> -->
+        <div class="class-user-card">
+            {{#each open_classes}}
+
+        <div class="card">
+            <div class="add-class-btn-container">
+                <button type="submit" class = "add-class-button" name="button" onclick="addClass({{class_ID}})"> Add To My Classes</button>
+            </div>
+
+            <button type="button" class="collapsible">{{section}}</button>
+
+            <div class="content">
+              <div class="body-header">
+                <div class="item">Instructor
+                    <p>{{instructor}}</p>
+                </div>
+
+                <div class="item">Dates
+                    <p>{{date}}</p>
+                </div>
+                <div class="item">Time
+                    <p>{{time}}</p>
+                </div>
+                <div class="item">Fee
+                    <p>${{fee}}</p>
+                </div>
+                <div class="item">Max Enrl
+                    <p>5</p>
+                </div>
+                <div class="item">Acutal Enrl
+                    <p>4</p>
+                </div>
+                <div class="item7">Description
+                    <p>{{description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+
+
+      <div class="buttons">
+        <input class="search-btn" type="submit" value="Search">
+        <input class="reset-search-btn" type="submit" value="Reset Search">
+      </div>
+
+    </div>
+
+  </div>
+<script src="class-register-search-bar.js"></script>
+</body>
+
 <h2><a href='/'>Back to Home Page</a></h2>
 
 <h3>Available Classes:</h3>
 <table>
-    <thead> 
-        <th>Class ID</th> 
+    <thead>
+        <th>Class ID</th>
         <th>Category</th>
         <th>Section</th>
         <th>Instructor</th>
@@ -13,12 +154,12 @@
         <th>Fee</th>
         <th>Description</th>
         <th>Add Button</th>
-    </thead> 
+    </thead>
     <tbody>
-        {{#each open_classes}} 
-        <tr> 
-            <td>{{class_ID}}</td> 
-            <td>{{category}}</td> 
+        {{#each open_classes}}
+        <tr>
+            <td>{{class_ID}}</td>
+            <td>{{category}}</td>
             <td>{{section}}</td>
             <td>{{instructor}}</td>
             <td>{{term}}</td>
@@ -27,7 +168,7 @@
             <td>${{fee}}</td>
             <td>{{description}}</td>
             <td><button type="submit" onclick="addClass({{class_ID}})">Add Class to Schedule</button></td>
-        </tr> 
-        {{/each}} 
-    </tbody> 
+        </tr>
+        {{/each}}
+    </tbody>
 </table>

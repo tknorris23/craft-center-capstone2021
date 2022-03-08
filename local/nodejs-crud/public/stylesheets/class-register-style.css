@@ -1,0 +1,242 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  select{
+    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  #osuBar {
+    background-color: #D73F09;
+    height: 100px;
+    text-align: left;
+  }
+  
+  #osuLogo {
+    height: 100px;
+    padding-left: 5px;
+  }
+  
+  #blackBar {
+    background-color: #000000;
+    height: 40px;
+    text-align: left;
+  }
+  
+  #barText {
+    margin-top: 0;
+    padding-top: 10px;
+    padding-left: 10px;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .navBar{
+    display: inline-block;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 100%;
+    min-width: 1000px;
+    margin-left: -40px;
+    font-family: 'Gudea',Arial,Verdana,sans-serif;
+    font-weight: lighter;
+    font-size: 16px;
+  }
+  
+  
+  .navBar ul li{
+    list-style-type: none;
+    float: left;
+    margin-left: 20px;
+    display: block;
+  }
+  
+  .navBar a{
+    padding-top: 15px;
+    text-decoration: none;
+    color: #252525;
+    padding: 10px 20px;
+    display: block;
+    text-transform: uppercase;
+  }
+  
+  .navBar a:hover{
+    color: white;
+    background-color: #252525;
+    padding: 10px 20px;
+    display: block;
+  }
+  
+  .class-registration-container{
+    width: 1000px;
+    padding: 40px;
+  
+    position: center;
+    margin-top: 15px;
+    box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.2);
+    border-radius: 25px;
+    margin: auto;
+    margin-top: 10px;
+  }
+  
+  .class-orange-heading{
+    background-color: #D73F09;
+    height: 70px;
+    right: 40px;
+    bottom:40px;
+    border-top-left-radius: 21px;
+    border-top-right-radius: 21px;
+  }
+  
+  .class-register-heading{
+      color: white;
+      text-align: center;
+      margin: 0px;
+      padding-top: 18px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 30px;
+      font-weight: lighter;
+  }
+  
+  
+  
+  .textbox-search-bar{
+    position: relative;
+    border: 1px solid grey;
+    border-radius: 8px;
+    height: 30px;
+    width: 99.7%;
+    outline: 0;
+    background-color: #f5f5f5;
+    font-size: 18px;
+    text-align: center;
+    bottom: 10px;
+  }
+  
+  
+  
+  .search-dropdowns-container{
+    position: relative;
+    width: 100%;
+  }
+  
+  .select-box{
+    display: inline-block;
+    padding-left: 80px;
+  }
+  
+  .buttons{
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .search-btn{
+    position: relative;
+    background-color: #D73F09;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    width: 70px;
+    height: 30px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .reset-search-btn{
+    position: relative;
+    background-color: #D73F09;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    margin-top: -20px;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    border-radius: 10px;
+  }
+  
+  .active, .collapsible:hover {
+    background-color: #555;
+  }
+  
+  .add-class-btn-container{
+    position: relative;
+    float: right;
+    top:22px;
+    right:10px;
+  }
+  
+  .add-class-button{
+    background-color: #D73F09;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    height: 25px;
+    width: 150px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .content {
+    padding: 0px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+  }
+  
+  .class-user-card{
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .body-header{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: lighter;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 190px 158px 64px 163px 176px 100px;
+    grid-gap: 15px;
+    grid-auto-rows: minmax(50px, auto);
+    padding-top: 8px;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 18px;
+  }
+  
+  .item7 {
+    grid-column: 1 / span 6;
+    text-align: left;
+    padding-left: 55px;
+  }
+  
+  .hide{
+    display: none;
+  }
