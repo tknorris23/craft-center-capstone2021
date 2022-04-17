@@ -93,8 +93,8 @@ router.post('/', function(req, res){
     console.log(req.body.user_ID)
     console.log(req.body.class_ID)
     var mysql = req.app.get('mysql');
-    var sql = "INSERT INTO user_class (user_ID, class_ID) VALUES(?, ?)";
-    var inserts = [req.body.user_ID, req.body.class_ID];
+    var sql = "INSERT INTO user_class (user_ID, class_ID, status) VALUES(?, ?, ?)";
+    var inserts = [req.body.user_ID, req.body.class_ID, 'enrolled'];
     sql = mysql.connection.query(sql,inserts,function(error, results, fields){
         if(error){
             res.write(JSON.stringify(error));

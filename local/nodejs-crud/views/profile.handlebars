@@ -40,29 +40,35 @@
     <form id="profileForm" class="profileForm" action="/profile" method="post">
       <div class="fname">
         <p id="fnameid">First Name:</p>
-        <input type="text" name="firstName" value="{{profile.first_name}}">
+        <input id="textFirst" type="text" name="firstName" value="{{profile.first_name}}" readonly>
       </div>
 
       <div class="lname">
         <p id="lnameid">Last Name:</p>
-        <input type="text" name="lastName" value="{{profile.last_name}}">
+        <input id="textFirst" type="text" name="lastName" value="{{profile.last_name}}" readonly>
       </div>
 
       <br>
 
       <div class="memberT">
-        <p id="membershipT">Membership Type:</p>
-        <input type="text" name="memT" value="{{profile.membership}}">
+        <p id="membershipT">Membership:</p>
+        <input id="textFirst" type="text" name="memT" value="{{profile.membership}}" readonly>
       </div>
 
       <div class="Pronoun">
-        <p id="studentP">Prefer Pronoun:</p>
-        <input type="text" name="stuPro" placeholcer="pronouns" value="{{profile.pronouns}}">
+        <label for="pronounChoice">Select a Pronoun: </label>
+        <select name="pronounChoice" id="pronounChoice">
+          <option value="he/him">He/Him</option>
+          <option value="she/her">She/Her</option>
+          <option value="they/them">They/Them</option>
+          <option value="ze/zir">Ze/Zir</option>
+          <option value="other">Other</option>
+        </select>
       </div>
 
       <div class="onidID">
         <p id="osuID">OSU ONID:</p>
-        <input type="text" name="osuOnid" value="{{profile.OSU_ID}}">
+        <input id="textFirst" type="text" name="osuOnid" value="{{profile.OSU_ID}}" readonly>
       </div>
     <!--/form><!-->
 
@@ -75,7 +81,7 @@
     <!--form class="contactForm" action="index.html" method="post"><!-->
       <div class='ONIDemail'>
         <p id="emailID">ONID Email:</p>
-        <input type="text" name="onidEmail" value="{{profile.email}}">
+        <input id="textFirst" type="text" name="onidEmail" value="{{profile.email}}" readonly>
       </div>
 
       <div class='altEmail'>
@@ -84,7 +90,7 @@
       </div>
 
       <p id="phoneID">Phone Number:</p>
-      <input type="text" name="phoneNum" value="{{profile.phone_num}}">
+      <input type="text" name="phoneNum" value="{{profile.phone_num}}" >
     </form>
 
     <br><br>

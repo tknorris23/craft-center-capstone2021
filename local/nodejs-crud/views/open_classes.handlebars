@@ -1,7 +1,8 @@
 <head>
   <meta charset="utf-8">
   <title>Craft Center - Class Registration</title>
-  <link rel="stylesheet" href="stylesheets/class-register-style.css" />
+  <link rel="stylesheet" href="stylesheets/class-register-style.css" >
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -87,47 +88,47 @@
         </form>
       </div>
 
-      <!-- <ul id="classesList"></ul> -->
-      <div class="class-user-card">
-        {{#each open_classes}}
+        <!-- <ul id="classesList"></ul> -->
+<div class="class-user-card">
+    {{#each open_classes}}
 
-        <div class="card">
-          <div class="add-class-btn-container">
+    <div class="card">
+        <div class="add-class-btn-container">
             <button type="submit" class="add-class-button" name="button" onclick="addClass({{class_ID}})"> Add To My
               Classes</button>
-          </div>
-
-          <button type="button" class="collapsible">{{section}}</button>
-
-          <div class="content">
-            <div class="body-header">
-              <div class="item">Instructor
-                <p>{{instructor}}</p>
-              </div>
-
-              <div class="item">Dates
-                <p>{{date}}</p>
-              </div>
-              <div class="item">Time
-                <p>{{time}}</p>
-              </div>
-              <div class="item">Fee
-                <p>${{fee}}</p>
-              </div>
-              <div class="item">Max Enrl
-                <p>5</p>
-              </div>
-              <div class="item">Acutal Enrl
-                <p>4</p>
-              </div>
-              <div class="item7">Description
-                <p>{{description}}</p>
-              </div>
-            </div>
-          </div>
         </div>
-        {{/each}}
-      </div>
+
+        <button type="button" class="collapsible">{{section}}</button>
+
+        <div class="content">
+            <div class="body-header">
+                <div class="item">Instructor
+                    <p>{{instructor}}</p>
+                </div>
+
+                <div class="item">Dates
+                    <p>{{date}}</p>
+                </div>
+                <div class="item">Time
+                    <p>{{time}}</p>
+                </div>
+                <div class="item">Fee
+                    <p>${{fee}}</p>
+                </div>
+                <div class="item">Max Enrl
+                    <p>{{max_enrolled}}</p>
+                </div>
+                <div class="item">Acutal Enrl
+                    <p>{{curr_enrolled}}</p>
+                </div>
+                <div class="item7">Description
+                    <p>{{description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
       
 
 

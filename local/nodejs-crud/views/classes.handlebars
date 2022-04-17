@@ -11,6 +11,7 @@
     Time: <input type="text" name="time" required><br>
     Description: <input type="text" name="description" required><br>
     Fee: <input type="number" name="fee" required><br>
+    Max Enrollment: <input type="number" name="max_enroll" required><br>
     <input type="submit" value="Submit">
  </form>
 <br/>
@@ -34,6 +35,7 @@
         <th>Date</th>
         <th>Time</th>
         <th>Fee</th>
+        <th>Fee</th>
         <th>Description</th>
         <th>Delete Button</th>
     </thead> 
@@ -48,6 +50,8 @@
             <td>{{date}}</td>
             <td>{{time}}</td>
             <td>${{fee}}</td>
+            <td>{{curr_enroll}}</td>
+            <td>{{max_enroll}}</td>
             <td>{{description}}</td>
             <td><button onclick="deleteClass({{class_ID}})">Delete</button></td>
         </tr> 

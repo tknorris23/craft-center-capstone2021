@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 function getClasses(req, res, mysql, context, complete){
-    var query = "SELECT classes.class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time, classes.fee FROM classes";
+    var query = "SELECT classes.class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time, classes.fee, classes.curr_enrolled, classes.max_enrolled FROM classes";
 
 
     mysql.connection.query(query, function(error, results, fields){

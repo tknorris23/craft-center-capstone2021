@@ -1,12 +1,12 @@
 function updateProfile() {
-  $.ajax({
-    url: '/profile/',
-    type: 'PUT',
-    data: $('#profileForm').serialize(),
-    success: function (result) {
-      window.location.reload("./profile");
-    }
-  })
+    $.ajax({
+        url: '/profile/update',
+        type: 'POST',
+        data: $('#profileForm').serialize(),
+        success: function(result) {
+            window.location.reload("./profile");
+        }
+    })
 };
 
 /*window.addEventListener('DOMContentLoaded', function () {

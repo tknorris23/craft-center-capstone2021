@@ -1,9 +1,9 @@
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-	host:'classmysql.engr.oregonstate.edu',
-	user: 'cs440_coppintr',
-    password: '5897',
-    database: 'cs440_coppintr',
+	host:'localhost',
+	user: 'root',
+    password: '',
+    database: 'test_craft_center',
     queueLimit: 0,
     connectionLimit: 0
 });

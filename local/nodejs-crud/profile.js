@@ -5,9 +5,10 @@ function saveProfile(req, res, mysql, context, complete) {
 
     session = req.session;
 
+    //
     var query = "SELECT users.user_ID FROM users WHERE users.OSU_ID = " + mysql.connection.escape(req.params.s + '%');
 
-    mysql.connection.query(query, function (error, results, fields) {
+    mysql.connection.query(query, function(error, results, fields) {
         if (error) {
             res.write(JSON.stringify(error));
             res.redirect('/profile');
@@ -40,7 +41,7 @@ function getProfile(req, res, mysql, context, complete) {
 
     var inserts = [session.user];
 
-    mysql.connection.query(query, inserts, function (error, results, fields) {
+    mysql.connection.query(query, inserts, function(error, results, fields) {
         if (error) {
             res.write(JSON.stringify(error));
             res.redirect('/profile');
@@ -51,12 +52,13 @@ function getProfile(req, res, mysql, context, complete) {
     });
 }
 
-router.get('/:s', function (req, res) {
+router.get('/:s', function(req, res) {
     var callbackCount = 0;
     var context = {};
     context.jsscripts = ["get_profile.js"];
     var mysql = req.app.get('mysql');
     saveProfile(req, res, mysql, context, complete);
+
     function complete() {
         callbackCount++;
         if (callbackCount >= 1) {
@@ -65,12 +67,13 @@ router.get('/:s', function (req, res) {
     }
 });
 
-router.get('/', function (req, res) {
+router.get('/', function(req, res) {
     var callbackCount = 0;
     var context = {};
     context.jsscripts = ["update_profile.js"];
     var mysql = req.app.get('mysql');
     getProfile(req, res, mysql, context, complete);
+
     function complete() {
         callbackCount++;
         if (callbackCount >= 1) {
@@ -79,7 +82,7 @@ router.get('/', function (req, res) {
     }
 });
 
-router.put('/', function(req, res){
+router.post('/update', function(req, res) {
 
     session = req.session;
 
@@ -88,7 +91,7 @@ router.put('/', function(req, res){
     console.log(session.user)
     var sql = "UPDATE users SET first_name = ?, last_name = ?, pronouns = ?, email = ?, alt_email = ?, phone_num = ? WHERE user_ID = ?";
     var inserts = [req.body.firstName, req.body.lastName, req.body.stuPro, req.body.onidEmail, req.body.altEmails, req.body.phoneNum, session.user];
-    mysql.connection.query(sql, inserts, function (error, results, fields) {
+    mysql.connection.query(sql, inserts, function(error, results, fields) {
         if (error) {
             res.write(JSON.stringify(error));
             res.end();
