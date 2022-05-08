@@ -62,8 +62,16 @@ hr{
   justify-content: center;
   }
 
+  .login-box1{
+    background: white;
+    border-radius: 25px;
+    position: absolute;
+    margin-top: 80px;
+    width: 500px;
+    height: 200px;
+  }
 
-.login-box{
+.login-box2{
   background: white;
   border-radius: 25px;
   position: absolute;
@@ -98,29 +106,11 @@ hr{
   color: white;
   border: none;
   border-radius: 10px;
-  width: 50%;
-  height: 15%;
+  width: 53%;
+  height: 23%;
   position: relative;
 
   text-align: center;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 30px;
-  margin-bottom: 5px;
-}
-
-.non-OSU-login-button{
-  background-color: #D73F09;
-  color: white;
-  border: none;
-  border-radius: 10px;
-
-  width: 50%;
-  height: 10%;
-  position: relative;
-  text-align: center;
-
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
@@ -181,7 +171,7 @@ hr{
   left: 20px;
   width: 430px;
   height: 45px;
-  font-size: 25px;
+  font-size: 48px;
 }
 
 .links-container{

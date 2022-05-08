@@ -1,7 +1,10 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
 <head>
   <meta charset="utf-8">
   <title>Craft Center - Class Registration</title>
-  <link rel="stylesheet" href="stylesheets/class-register-style.css" >
+  <link rel="stylesheet" href="/stylesheets/class-register-style.css" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
@@ -15,6 +18,10 @@
   <!-- Div bar for Craft Center name -->
   <div id="blackBar">
     <p id="barText">Craft Center Student View</p>
+    <p id="logout">
+      <a class="logout" href="/login"> Logout
+      </a>
+    </p>
   </div>
 
   <!-- Navigation Bar of Craft Center -->
@@ -24,7 +31,7 @@
         <li><a href="/">HOME</a></li>
         <li><a href="/profile">MY PROFILE</a></li>
         <li><a href="/my_classes">MY CLASSES</a></li>
-        <li><a href="open_classes">CLASS REGISTRATION</a></li>
+        <li><a href="/open_classes">CLASS REGISTRATION</a></li>
         <li><a href="/membership">MEMBERSHIP REGISTRATION</a></li>
       </ul>
     </nav>
@@ -42,24 +49,13 @@
     <div class="search-box">
       <div class="search-bar-container">
         <!-- <input id="searchbar" onkeyup="search_animal()" type="text" placeholder="Search..." class ="textbox-search-bar" name="searchbar"> -->
-        <input id="searchbar" onkeyup="search_animal()" type="text" placeholder="Search..." class="textbox-search-bar"
-          name="searchbar">
+        <input id="searchbar" type="text" placeholder="Search..." class="textbox-search-bar" name="searchbar"
+          onkeyup="mySearchFunction()" data-search>
       </div>
 
       <div class="search-dropdowns-container">
         <!-- <form name="form1" id="form1" action="/action_page.php"> -->
         <form action="#" method="post">
-          <div class="select-box">
-            Term:
-            <select>
-              <!-- <option value="" selected>All Terms</option> -->
-              <option>All Terms</option>
-              <option>Winter 2022</option>
-              <option>Spring 2022</option>
-              <option>Summer 2022</option>
-              <option>Spring 2022</option>
-            </select>
-          </div>
 
           <div class="select-box">
             Category:
@@ -88,91 +84,76 @@
         </form>
       </div>
 
-        <!-- <ul id="classesList"></ul> -->
-<div class="class-user-card">
-    {{#each open_classes}}
+      <div class="class-user-card" data-user-card-container>
 
-    <div class="card">
-        <div class="add-class-btn-container">
-            <button type="submit" class="add-class-button" name="button" onclick="addClass({{class_ID}})"> Add To My
-              Classes</button>
-        </div>
+      </div>
 
-        <button type="button" class="collapsible">{{section}}</button>
+      <div id="cards">
 
-        <div class="content">
-            <div class="body-header">
-                <div class="item">Instructor
-                    <p>{{instructor}}</p>
-                </div>
+        {{#each open_classes}}
+        {{!-- <template data-user-template> --}}
 
-                <div class="item">Dates
-                    <p>{{date}}</p>
-                </div>
-                <div class="item">Time
-                    <p>{{time}}</p>
-                </div>
-                <div class="item">Fee
-                    <p>${{fee}}</p>
-                </div>
-                <div class="item">Max Enrl
-                    <p>{{max_enrolled}}</p>
-                </div>
-                <div class="item">Acutal Enrl
-                    <p>{{curr_enrolled}}</p>
-                </div>
-                <div class="item7">Description
-                    <p>{{description}}</p>
-                </div>
+          <div class="card">
+            <div class="add-class-btn-container">
+              <button type="button" class="add-class-button" name="button" onclick="addClass({{class_ID}})">Add To My
+                Classes
+              </button>
             </div>
-        </div>
-    </div>
-    {{/each}}
-</div>
-      
 
 
-      <div class="buttons">
-        <input class="search-btn" type="submit" value="Search">
-        <input class="reset-search-btn" type="submit" value="Reset Search">
+            <button type="button" class="collapsible" collapsible-header>{{section}}</button>
+
+            <div class="content">
+              <div class="body-header">
+                {{!-- <div class="item0">
+                  <h4>Category</h4>
+                  <p class="item0-category" item0-category-body>{{category}}</p>
+                </div> --}}
+                <div class="item1">
+                  <h4>Instructor</h4>
+                  <p class="item1-instructor" item1-instructor-body>{{instructor}}</p>
+                </div>
+                <div class="item2">
+                  <h4>Dates</h4>
+                  <p class="item2-dates" item2-dates-body>{{date}}</p>
+                </div>
+                <div class="item3">
+                  <h4>Time</h4>
+                  <p class="item3-time" item3-time-body>{{time}}</p>
+                </div>
+                <div class="item4">
+                  <h4>Fee</h4>
+                  <p class="item4-fee" item4-fee-body>${{fee}}</p>
+                </div>
+                <div class="item5">
+                  <h4>Max Enrl</h4>
+                  <p class="item5-max-enrl" item5-max-enrl-body>{{max_enrolled}}</p>
+                </div>
+                <div class="item6">
+                  <h4>Acutal Enrl</h4>
+                  <p class="item6-actual-enrl" item6-actual-enrl-body>{{curr_enrolled}}</p>
+                </div>
+                <div class="item7">
+                  <h4>Description</h4>
+                  <p class="item7-descrip" item7-descrip-body>{{description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {{!--
+        </template> --}}
+        {{/each}}
       </div>
 
     </div>
 
   </div>
-  <script src="class-register-search-bar.js"></script>
+  {{!--
+  <script src="class-register-search-bar.js"></script> --}}
+  <script src="open_class_registration.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 </body>
 
-{{!-- <h2><a href='/'>Back to Home Page</a></h2>
-
-<h3>Available Classes:</h3>
-<table>
-  <thead>
-    <th>Class ID</th>
-    <th>Category</th>
-    <th>Section</th>
-    <th>Instructor</th>
-    <th>Term</th>
-    <th>Date</th>
-    <th>Time</th>
-    <th>Fee</th>
-    <th>Description</th>
-    <th>Add Button</th>
-  </thead>
-  <tbody>
-    {{#each open_classes}}
-    <tr>
-      <td>{{class_ID}}</td>
-      <td>{{category}}</td>
-      <td>{{section}}</td>
-      <td>{{instructor}}</td>
-      <td>{{term}}</td>
-      <td>{{date}}</td>
-      <td>{{time}}</td>
-      <td>${{fee}}</td>
-      <td>{{description}}</td>
-      <td><button type="submit" onclick="addClass({{class_ID}})">Add Class to Schedule</button></td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table> --}}
+</html>

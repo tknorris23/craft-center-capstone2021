@@ -10,6 +10,10 @@
   <!-- Div bar for Craft Center name -->
   <div id="blackBar">
     <p id="barText">Craft Center Student View</p>
+    <p id="logout">
+      <a class="logout" href="/login"> Logout
+      </a>
+    </p>
   </div>
 </head>
 
@@ -58,6 +62,7 @@
       <div class="Pronoun">
         <label for="pronounChoice">Select a Pronoun: </label>
         <select name="pronounChoice" id="pronounChoice">
+          <option value ="{{profile.pronouns}}">{{profile.pronouns}}</option>
           <option value="he/him">He/Him</option>
           <option value="she/her">She/Her</option>
           <option value="they/them">They/Them</option>

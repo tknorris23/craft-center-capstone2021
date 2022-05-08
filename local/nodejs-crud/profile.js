@@ -90,7 +90,7 @@ router.post('/update', function(req, res) {
     console.log(req.body)
     console.log(session.user)
     var sql = "UPDATE users SET first_name = ?, last_name = ?, pronouns = ?, email = ?, alt_email = ?, phone_num = ? WHERE user_ID = ?";
-    var inserts = [req.body.firstName, req.body.lastName, req.body.stuPro, req.body.onidEmail, req.body.altEmails, req.body.phoneNum, session.user];
+    var inserts = [req.body.firstName, req.body.lastName, req.body.pronounChoice, req.body.onidEmail, req.body.altEmails, req.body.phoneNum, session.user];
     mysql.connection.query(sql, inserts, function(error, results, fields) {
         if (error) {
             res.write(JSON.stringify(error));

@@ -117,3 +117,15 @@ body {
     margin-top: -10px;
     color: #FF3284;
 }
+
+.logout {
+    padding-top: 10px;
+    float: right;
+    position: relative;
+    bottom: 52px;
+    right: 10px;
+    font-family: "Open Sans", sans-serif;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}

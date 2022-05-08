@@ -16,6 +16,30 @@ function getClasses(req, res, mysql, context, complete) {
             return;
         }
         context.open_classes = results;
+        //console.log(results);
+        //console.log(results[2].class_ID);
+
+        // let query = "SELECT user_class.class_ID FROM user_class WHERE user_class.status LIKE 'Enrolled' AND user_class.user_ID LIKE ? ORDER BY class_ID ASC";
+
+        // query = mysql.connection.query(query, inserts, function(error, results2, fields){
+        //     if(error){
+        //         res.write(JSON.stringify(error));
+        //         return;
+        //     }
+        //     context.open_class = results2;
+        //     //console.log(results2[0].class_ID);
+
+        //     let buttonMsg = document.getElementsById("add_class_btn");
+        //     for(let i = 0; i<results.length; i++){
+        //         if(results[i].class_ID = results2){
+        //             buttonMsg.innerHTML = '&check';
+        //         }
+        //         else{
+        //             buttonMsg.innerHTML = 'Add to My Classes';
+        //         }
+
+        //     }
+        // });
         complete();
     });
 }
@@ -26,6 +50,7 @@ router.get('/', function (req, res) {
     context.jsscripts = ["add_class.js"];
     var mysql = req.app.get('mysql');
     getClasses(req, res, mysql, context, complete);
+    //checkEnroll(req, res, mysql, context, complete);
     function complete() {
         callbackCount++;
         if (callbackCount >= 1) {
@@ -56,7 +81,7 @@ router.post('/:class_ID', function (req, res) {
     console.log(req.params)
     var mysql = req.app.get('mysql');
     var sql = "INSERT INTO user_class (user_ID, class_ID, status) VALUES(?, ?, ?)";
-    var inserts = [session.user, req.params.class_ID, 'waitlisted'];
+    var inserts = [session.user, req.params.class_ID, 'Waitlisted'];
     sql = mysql.connection.query(sql, inserts, function (error, results, fields) {
         if (error) {
             console.log(error);
