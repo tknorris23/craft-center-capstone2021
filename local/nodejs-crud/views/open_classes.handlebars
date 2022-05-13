@@ -53,11 +53,11 @@
           onkeyup="mySearchFunction()" data-search>
       </div>
 
-      <div class="search-dropdowns-container">
+      {{!-- <div class="search-dropdowns-container">
         <!-- <form name="form1" id="form1" action="/action_page.php"> -->
         <form action="#" method="post">
 
-          <div class="select-box">
+          <div class="select-box" id="select-box-category">
             Category:
             <select>
               <option>Select</option>
@@ -71,18 +71,18 @@
             </select>
           </div>
 
-          <div class="select-box">
+          <div class="select-box" id="select-box-fee">
             Fee:
             <select>
               <!-- <option value="" selected>All Terms</option> -->
-              <option>Any Course Fee</option>
-              <option>Free for Fee Paying Students</option>
-              <option>$20 - $45</option>
-              <option>$45 - $100</option>
+              <option value="1">Any Course Fee</option>
+              <option value="2">Free for Fee Paying Students</option>
+              <option value="3">$20 - $45</option>
+              <option value="4">$45 - $100</option>
             </select>
           </div>
         </form>
-      </div>
+      </div> --}}
 
       <div class="class-user-card" data-user-card-container>
 
@@ -91,66 +91,60 @@
       <div id="cards">
 
         {{#each open_classes}}
-        {{!-- <template data-user-template> --}}
 
-          <div class="card">
-            <div class="add-class-btn-container">
-              <button type="button" class="add-class-button" name="button" onclick="addClass({{class_ID}})">Add To My
-                Classes
-              </button>
-            </div>
+        <div class="card">
+          <div class="add-class-btn-container">
+            <button type="button" class="add-class-button" name="button" onclick="addClass({{class_ID}})">Add To My
+              Classes
+            </button>
+          </div>
 
 
-            <button type="button" class="collapsible" collapsible-header>{{section}}</button>
+          <button type="button" class="collapsible" collapsible-header>{{section}}</button>
 
-            <div class="content">
-              <div class="body-header">
-                {{!-- <div class="item0">
-                  <h4>Category</h4>
-                  <p class="item0-category" item0-category-body>{{category}}</p>
-                </div> --}}
-                <div class="item1">
-                  <h4>Instructor</h4>
-                  <p class="item1-instructor" item1-instructor-body>{{instructor}}</p>
-                </div>
-                <div class="item2">
-                  <h4>Dates</h4>
-                  <p class="item2-dates" item2-dates-body>{{date}}</p>
-                </div>
-                <div class="item3">
-                  <h4>Time</h4>
-                  <p class="item3-time" item3-time-body>{{time}}</p>
-                </div>
-                <div class="item4">
-                  <h4>Fee</h4>
-                  <p class="item4-fee" item4-fee-body>${{fee}}</p>
-                </div>
-                <div class="item5">
-                  <h4>Max Enrl</h4>
-                  <p class="item5-max-enrl" item5-max-enrl-body>{{max_enrolled}}</p>
-                </div>
-                <div class="item6">
-                  <h4>Acutal Enrl</h4>
-                  <p class="item6-actual-enrl" item6-actual-enrl-body>{{curr_enrolled}}</p>
-                </div>
-                <div class="item7">
-                  <h4>Description</h4>
-                  <p class="item7-descrip" item7-descrip-body>{{description}}</p>
-                </div>
+          <div class="content">
+            <div class="body-header">
+              <div class="item2">
+                <h4>Category</h4>
+                <p class="item2-category" item0-category-body>{{category}}</p>
+              </div>
+              <div class="item1">
+                <h4>Instructor</h4>
+                <p class="item1-instructor" item1-instructor-body>{{instructor}}</p>
+              </div>
+              <div class="item2">
+                <h4>Dates</h4>
+                <p class="item2-dates" item2-dates-body>{{date}}</p>
+              </div>
+              <div class="item3">
+                <h4>Time</h4>
+                <p class="item3-time" item3-time-body>{{time}}</p>
+              </div>
+              <div class="item4">
+                <h4>Fee</h4>
+                <p class="item4-fee" item4-fee-body>${{fee}}</p>
+              </div>
+              <div class="item5">
+                <h4>Max Enrl</h4>
+                <p class="item5-max-enrl" item5-max-enrl-body>{{max_enrolled}}</p>
+              </div>
+              <div class="item6">
+                <h4>Acutal Enrl</h4>
+                <p class="item6-actual-enrl" item6-actual-enrl-body>{{curr_enrolled}}</p>
+              </div>
+              <div class="item7">
+                <h4>Description</h4>
+                <p class="item7-descrip" item7-descrip-body>{{description}}</p>
               </div>
             </div>
           </div>
-
-          {{!--
-        </template> --}}
+        </div>
         {{/each}}
       </div>
 
     </div>
 
   </div>
-  {{!--
-  <script src="class-register-search-bar.js"></script> --}}
   <script src="open_class_registration.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 

@@ -18,17 +18,6 @@ h4 {
     line-height: 1px;
 }
 
-
-/* button {
-    display: inline-block;
-    font: inherit;
-    padding: 0px 5px;
-    cursor: pointer;
-  }
-  button::after {
-    content: ''
-  } */
-
 #osuBar {
     background-color: #D73F09;
     height: 100px;
@@ -275,7 +264,7 @@ h4 {
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 245px 172px 128px 119px 118px 100px;
+    grid-template-columns: 128px 128px 128px 100px 100px 100px 100px;
     grid-gap: 15px;
     grid-auto-rows: minmax(50px, auto);
     padding-top: 8px;
@@ -288,10 +277,11 @@ h4 {
     padding-top: 15px;
 }
 
-.item1 {
+
+/* .item1 {
     text-align: left;
     margin-left: 55px;
-}
+} */
 
 .item7 {
     grid-column: 1 / span 6;
