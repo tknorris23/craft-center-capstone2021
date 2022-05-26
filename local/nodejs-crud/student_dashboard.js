@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+//function to get the user's profile from the session variable
 function getProfile(req, res, mysql, context, complete) {
 
     session = req.session;
@@ -15,7 +16,7 @@ function getProfile(req, res, mysql, context, complete) {
 
     var inserts = [session.user];
 
-    mysql.connection.query(query, inserts, function (error, results, fields) {
+    mysql.connection.query(query, inserts, function(error, results, fields) {
         if (error) {
             res.write(JSON.stringify(error));
             res.redirect('/');
@@ -26,11 +27,13 @@ function getProfile(req, res, mysql, context, complete) {
     });
 }
 
-router.get('/', function (req, res) {
+//display results to page
+router.get('/', function(req, res) {
     var callbackCount = 0;
     var context = {};
     var mysql = req.app.get('mysql');
     getProfile(req, res, mysql, context, complete);
+
     function complete() {
         callbackCount++;
         if (callbackCount >= 1) {

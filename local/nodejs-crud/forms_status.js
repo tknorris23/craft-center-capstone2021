@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-function getProfile(req, res, mysql, context, complete){
+//function to get profile from session.user variable
+function getProfile(req, res, mysql, context, complete) {
 
     session = req.session;
     //console.log(session);
 
-    if(!session.user){
+    if (!session.user) {
         console.log('User must login before viewing their forms status');
         res.redirect('/login');
         return;
@@ -16,8 +17,8 @@ function getProfile(req, res, mysql, context, complete){
 
     var inserts = [session.user];
 
-    mysql.connection.query(query, inserts, function(error, results, fields){
-        if(error){
+    mysql.connection.query(query, inserts, function(error, results, fields) {
+        if (error) {
             res.write(JSON.stringify(error));
             res.redirect('/forms_status');
             return;
@@ -27,7 +28,8 @@ function getProfile(req, res, mysql, context, complete){
     });
 }
 
-function getIncompleteForms(req, res, mysql, context, complete){
+//function to get forms the user has not completed yet
+function getIncompleteForms(req, res, mysql, context, complete) {
 
     session = req.session;
     //console.log(session);
@@ -36,8 +38,8 @@ function getIncompleteForms(req, res, mysql, context, complete){
 
     var inserts = [session.user, session.user];
 
-    mysql.connection.query(query, inserts, function(error, results, fields){
-        if(error){
+    mysql.connection.query(query, inserts, function(error, results, fields) {
+        if (error) {
             res.write(JSON.stringify(error));
             res.redirect('/forms_status');
             return;
@@ -47,7 +49,8 @@ function getIncompleteForms(req, res, mysql, context, complete){
     });
 }
 
-function getCompleteForms(req, res, mysql, context, complete){
+//function to get the forms the user has completed
+function getCompleteForms(req, res, mysql, context, complete) {
 
     session = req.session;
     //console.log(session);
@@ -56,8 +59,8 @@ function getCompleteForms(req, res, mysql, context, complete){
 
     var inserts = [session.user];
 
-    mysql.connection.query(query, inserts, function(error, results, fields){
-        if(error){
+    mysql.connection.query(query, inserts, function(error, results, fields) {
+        if (error) {
             res.write(JSON.stringify(error));
             res.redirect('/forms_status');
             return;
@@ -67,16 +70,18 @@ function getCompleteForms(req, res, mysql, context, complete){
     });
 }
 
-router.get('/', function(req, res){
+//display results to page
+router.get('/', function(req, res) {
     var callbackCount = 0;
     var context = {};
     var mysql = req.app.get('mysql');
     getProfile(req, res, mysql, context, complete);
     getIncompleteForms(req, res, mysql, context, complete);
     getCompleteForms(req, res, mysql, context, complete);
-    function complete(){
+
+    function complete() {
         callbackCount++;
-        if(callbackCount >= 3){
+        if (callbackCount >= 3) {
             res.render('forms_status', context);
         }
     }

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+//function to get classes the user is registered in from the user_class table
 function getMyClasses(req, res, mysql, context, complete) {
 
     session = req.session;
@@ -26,6 +27,7 @@ function getMyClasses(req, res, mysql, context, complete) {
     });
 }
 
+//display results to page
 router.get('/', function(req, res) {
     var callbackCount = 0;
     var context = {};

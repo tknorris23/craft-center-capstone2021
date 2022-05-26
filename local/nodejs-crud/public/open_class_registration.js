@@ -1,3 +1,5 @@
+//js file for search function on the registration page
+
 var coll = document.getElementsByClassName("collapsible");
 var i;
 

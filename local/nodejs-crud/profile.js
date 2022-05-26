@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+//when the user logs in, this function saves the userID in the session variable for later use
 function saveProfile(req, res, mysql, context, complete) {
 
     session = req.session;
@@ -27,6 +28,7 @@ function saveProfile(req, res, mysql, context, complete) {
     });
 }
 
+//function to get user data from database
 function getProfile(req, res, mysql, context, complete) {
 
     session = req.session;
@@ -52,6 +54,7 @@ function getProfile(req, res, mysql, context, complete) {
     });
 }
 
+//function to search for a profile
 router.get('/:s', function(req, res) {
     var callbackCount = 0;
     var context = {};
@@ -67,6 +70,7 @@ router.get('/:s', function(req, res) {
     }
 });
 
+//display results to page
 router.get('/', function(req, res) {
     var callbackCount = 0;
     var context = {};
@@ -82,6 +86,7 @@ router.get('/', function(req, res) {
     }
 });
 
+//update profile when user presses "save" button
 router.post('/update', function(req, res) {
 
     session = req.session;
