@@ -1,0 +1,173 @@
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS classes;
+DROP TABLE IF EXISTS forms;
+DROP TABLE IF EXISTS user_class;
+DROP TABLE IF EXISTS class_form;
+DROP TABLE IF EXISTS user_form;
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- 
+-- Table structure for table `users`
+-- 
+
+CREATE TABLE users
+(
+  user_ID INT NOT NULL AUTO_INCREMENT,
+  OSU_ID INT NOT NULL UNIQUE,
+  first_name VARCHAR(50) NOT NULL,
+  last_name VARCHAR(50) NOT NULL,
+  prefered_name VARCHAR(50),
+  pronouns VARCHAR(20),
+  email VARCHAR(100) NOT NULL,
+  alt_email VARCHAR(100),
+  phone_num VARCHAR(12) NOT NULL,
+  comments VARCHAR(300),
+  term VARCHAR(15) NOT NULL,
+  membership VARCHAR(30) NOT NULL,
+  debt FLOAT(6,2) NOT NULL DEFAULT 0.0,
+  PRIMARY KEY (user_ID)
+);
+
+-- 
+-- Inserting data for table `users`
+-- 
+
+INSERT INTO `users` (`OSU_ID`, `first_name`, `last_name`, `email`, `phone_num`, `membership`, `term`) VALUES
+(930000000, 'John', 'Smith', 'smitjo@oregonstate.edu', 5410000009, 'OSU Student', 'Fall 2020'),
+(920000000, 'Akane', 'Tsunemori', 'tsunemak@oregonstate.edu', 5411111116, 'OSU Student', 'Winter 2021'),
+(932000000, 'Momo', 'Kawamoto', 'kawammo@oregonstate.edu', 5412222224, 'OSU Student', 'Fall 2021'),
+(931000005, 'Akira', 'Mado', 'madoaki@oregonstate.edu', 5413333333, 'OSU Student', 'Spring 2020'),
+(933634000, 'Madisen', 'Anonymous', '1student@oregonstate.edu', 5552220000, 'OSU Student', 'Spring 2022'),
+(933634042, 'Grace', 'Hammonds', '2student@oregonstate.edu', 5551240025, 'OSU Student', 'Spring 2022'),
+(933634307, 'Anna', 'Glueder', '308student@oregonstate.edu', 5552220307, 'OSU Student', 'Spring 2022'),
+(933634343, 'Mia', 'Scheel', 'scheemi@oregonstate.edu', 5554873434, 'OSU Student', 'Spring 2022'),
+(931634357, 'Ricky', 'Hua', 'Huaric@oregonstate.edu', 5413575480, 'OSU Student', 'Spring 2022');
+
+-- 
+-- Table structure for table `classes`
+-- 
+
+CREATE TABLE classes
+(
+  class_ID INT NOT NULL AUTO_INCREMENT,
+  category VARCHAR(50) NOT NULL,
+  section VARCHAR(125) NOT NULL,
+  description VARCHAR(300),
+  instructor VARCHAR(75) NOT NULL,
+  term VARCHAR(12) NOT NULL,
+  date VARCHAR(75) NOT NULL,
+  time VARCHAR(25) NOT NULL,
+  waitlist INT NOT NULL DEFAULT 0,
+  max_enrolled INT NOT NULL DEFAULT 0,
+  curr_enrolled INT NOT NULL DEFAULT 0,
+  fee FLOAT(6,2) NOT NULL DEFAULT 0.0,
+  PRIMARY KEY (class_ID)
+);
+
+-- 
+-- Inserting data for table `classes`
+-- 
+
+INSERT INTO `classes` (`category`, `section`, `instructor`, `term`, `date`, `time`, `fee`, `max_enrolled`, `description`) VALUES
+('Ceramics', 'Throwing on the Wheel with Rachel', 'Rachel Kirby', 'Spring 2022', 'Tuesdays April 12 - May 24', '1-3:30', 60, 15, 'Experienced teacher Rachel Kirby will take you from wedging to glazing and everything in between. Leave class with not only the beautiful ceramics you made, but the know-how to make more!'),
+('Glass', 'Intro to Stained Glass', 'Rachel Kirby', 'Spring 2022', 'Saturdays May 15 and 21',  '12:30 - 5:30', 40, 20, 'In two five-hour weekend workshops, Rachel Kirby will guide you through basic stained glass techniques. You may find that you need to spend some time out of class in order to finish your project.'),
+('Ceramics', 'Pottery 101 with Susan', 'Susan Bourque', 'Spring 2022', 'Thursdays April 14 - May 26', '6-8:30', 60, 15, 'Join Craft Center Director Susan Bourque to learn how to throw on the wheel. She will take you through the entire process from start to finish. Leave the class with a collection of mugs and bowls!'),
+('Fiber Arts', 'Bassic Sewing with Carrie', 'Carrie Marean-Reardon', 'Spring 2022', 'Thursdays April 14 - May 26', '6-8:30', 60, 15, 'Experienced instructor Carrie will teach you the fundamentals of sewing to get you going on your fiber adventures!'),
+('Fiber Arts', 'Screenprinting with Claire', 'Claire Moore', 'Spring 2022', 'Tuesdays April 18 - May 24', '5:30-8', 70, 10, 'Learn how to get your designs on anything from fabric to paper in this intro to screenprinting class. Fee includes 1 screen, a T-shirt, emulsion and ink for class use.'),
+('Jewelry', 'Hummingbird Earrings', 'Anna Russel', 'Spring 2022', 'Thursday April 28', '1-5', 40, 15, 'Learn the basics of metalsmithing while making a beautiful piece of Jewelry! Take the Hummingbird Pendant workshop to create a matching set!'),
+('Paper Arts', 'Scientific Illustration with SueZeev', 'SueZeev Ranseen', 'Spring 2022', 'Mondays April 18 - May 23', '5:30-8', 50, 15, 'Lessons on basic drawings, line quality, shading, composition, and other drawing techniques from a scientist! The class will cover topics in illustration, botany, animals, anatomy, and careful observation. Materials will be provided for the class.'),
+('Woodworking', 'Intro to Woodworking with Noah', 'Noah Bamberger', 'Spring 2022', 'Tuesdays April 12 - May 17', '5:30-8', 60, 10, 'Learn to use each of the large pieces of equipment in the woodshop as you construct a custom frame. Materials included.'),
+('Woodworking', 'Turning Bowls on the Lathe with AJ', 'AJ Hall', 'Spring 2022', 'Thursdays April 14 - 28', '6-8', 50, 8, 'Experienced woodturner AJ Hall will teach you to turn by creating your own unique wooden vessels. Materials included.');
+
+-- 
+-- Table structure for table `forms`
+-- 
+
+CREATE TABLE forms
+(
+  form_ID INT NOT NULL AUTO_INCREMENT,
+  type VARCHAR(256) NOT NULL,
+  link VARCHAR(256) NOT NULL,
+  PRIMARY KEY (form_ID)
+);
+
+-- 
+-- Inserting data for table `forms`
+-- 
+
+INSERT INTO `forms` (`type`, `link`) VALUES
+('Glass User Agreement', 'https://oregonstate.qualtrics.com/jfe/form/SV_9vPHMe6YRG2laGF'),
+('Jewelry User Agreement', 'https://oregonstate.qualtrics.com/jfe/form/SV_bf3XC9Oqz69pCaF'),
+('Glass Torch User Agreement', 'https://oregonstate.qualtrics.com/jfe/form/SV_cYlyJnbBO99Ssw5'),
+('Woodshop User Agreement', 'https://oregonstate.qualtrics.com/jfe/form/SV_1H2YWJ9MALcDYKV'),
+('Ceramics User Agreement', 'https://oregonstate.qualtrics.com/jfe/form/SV_baxL7tsnJsM1HkV');
+
+-- 
+-- Table structure for table `user_class`
+-- 
+
+CREATE TABLE user_class
+(
+  class_ID INT NOT NULL,
+  user_ID INT NOT NULL,
+  status VARCHAR(12) DEFAULT 'NULL',
+  time_limit TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_ID`, `class_ID`),
+  FOREIGN KEY (class_ID) REFERENCES classes(class_ID) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (user_ID) REFERENCES users(user_ID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- 
+-- Inserting data for table `user_class`
+-- 
+
+INSERT INTO `user_class` (`user_ID`, `class_ID`, `status`) VALUES
+(1, 1, 'Enrolled'),
+(1, 2, 'Waitlisted'),
+(2, 2, 'Enrolled'),
+(3, 2, 'Waitlisted');
+
+-- 
+-- Table structure for table `user_form`
+-- 
+
+CREATE TABLE user_form
+(
+  user_ID INT NOT NULL,
+  form_ID INT NOT NULL,
+  PRIMARY KEY (`user_ID`, `form_ID`),
+  FOREIGN KEY (user_ID) REFERENCES users(user_ID) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (form_ID) REFERENCES forms(form_ID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- 
+-- Inserting data for table `user_form`
+-- 
+
+INSERT INTO `user_form` (`user_ID`, `form_ID`) VALUES
+(1, 1),
+(1, 2),
+(2, 2);
+
+-- 
+-- Table structure for table `class_form`
+-- 
+
+CREATE TABLE class_form
+(
+  class_ID INT NOT NULL,
+  form_ID INT NOT NULL,
+  PRIMARY KEY (`class_ID`, `form_ID`),
+  FOREIGN KEY (class_ID) REFERENCES classes(class_ID) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (form_ID) REFERENCES forms(form_ID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- 
+-- Inserting data for table `class_form`
+-- 
+
+INSERT INTO `class_form` (`class_ID`, `form_ID`) VALUES
+(1, 4),
+(2, 1),
+(2, 3);

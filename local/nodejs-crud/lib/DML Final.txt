@@ -1,0 +1,142 @@
+# Sample DML's for all functions of the website
+# ':' character indicates variables for values from the user provides
+
+----------------------------------
+# users DML's
+
+# List users table
+SELECT users.user_ID, users.OSU_ID, users.first_name, users.last_name, users.pronouns, users.prefered_name, users.email, users.alt_email, users.phone_num, users.term, users.membership, users.debt, users.comments FROM users;
+
+# Add a user
+INSERT INTO users (OSU_ID, first_name, last_name, email, phone_num, term, membership) VALUES(
+:OSU_ID, :first_name, :last_name, :email, :phone_num, :term, :membership);
+
+# Delete a user
+DELETE FROM users WHERE user_ID = :user_ID;
+
+# Update a user
+UPDATE users SET OSU_ID = :OSU_ID, first_name = :first_name, last_name = :last_name, pronouns = :pronouns, email = :email, alt_email = :alt_email, phone_num = :phone_num, term = :term, membership = :membership, debt = :debt, comments = :comments WHERE user_ID = :user_ID;
+
+# Search a user by email, OSU_ID, or user_ID
+SELECT users.user_ID, users.OSU_ID, users.first_name, users.last_name, users.pronouns, users.prefered_name, users.email, users.alt_email, users.phone_num, users.term, users.membership, users.debt, users.comments FROM users WHERE email LIKE :email;
+WHERE OSU_ID = :OSU_ID;
+WHERE user_ID = :user_ID;
+
+# List all user emails
+SELECT users.user_ID, users.email FROM users;
+
+----------------------------------
+# classes DML's
+
+# List classes table
+SELECT classes.class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time, classes.fee, classes.waitlist, classes.curr_enrolled, classes.max_enrolled FROM classes;
+
+# Add a class
+INSERT INTO classes (class_ID, category, section, description, instructor, term, date, time, fee, max_enrolled) VALUES(
+:class_ID, :category, :section, :description, :instructor, :term, :date, :time, :fee);
+
+# Delete a class
+DELETE FROM classes WHERE class_ID = :class_ID;
+
+# Update a class
+UPDATE classes SET category = :category, section = :section, description = :description, instructor = :instructor, term = :term, date = :date, time = :time, fee = :fee, max_enrolled = :max_enrolled WHERE class_ID = :class_ID;
+
+# Search a class by category, fee, class_ID, or term
+SELECT classes.class_ID, classes.category, classes.section, classes.description, classes.instructor, classes.term, classes.date, classes.time, classes.fee, classes.max_enrolled FROM classes WHERE category = :category;
+WHERE fee = :fee
+WHERE class_ID = :class_ID
+WHERE term = :term
+----------------------------------
+# forms DML's
+
+# List forms table
+SELECT forms.form_ID, forms.type, forms.link FROM forms;
+
+# Add a form
+INSERT INTO forms (type, link) VALUES (:type, :link);
+
+# Delete a form
+DELETE FROM forms WHERE form_ID = :form_ID;
+
+# Update a form
+UPDATE forms SET type = :type, link = :link WHERE form_ID = :form_ID;
+
+# Search a form by type, form_ID
+SELECT forms.form_ID, forms.type, forms.link FROM forms WHERE type = :type;
+WHERE form_ID = :form_ID
+
+----------------------------------
+# user_class relationship DML's
+
+# List user_class table
+SELECT user_class.user_ID AS user_ID, users.first_name AS first_name, users.last_name AS last_name, user_class.class_ID AS class_ID, classes.category AS category, classes.section AS section FROM user_class LEFT JOIN users on users.user_ID = user_class.user_ID LEFT JOIN classes ON classes.class_ID = user_class.class_ID ORDER BY user_ID ASC, class_ID ASC;
+
+# Add a user_class relationship
+INSERT INTO user_class (user_ID, class_ID) VALUES (:user_ID, class_ID);
+
+# Delete a user_class relationship
+DELETE FROM user_class WHERE user_ID = :user_ID AND class_ID = :class_ID;
+
+# Update a user_class relationship
+# shouldn't need this
+UPDATE user_class SET class_ID = :class_ID WHERE user_ID = :user_ID;
+
+# Search user_class by user_ID, class_ID, category, session, or OSU_ID
+SELECT user_class.user_ID AS user_ID, users.OSU_ID, users.first_name, users.last_name, user_class.class_ID AS class_ID, classes.category AS category, classes.section AS section FROM user_class LEFT JOIN users on users.user_ID = user_class.user_ID LEFT JOIN classes ON classes.class_ID = user_class.class_ID WHERE users.user_ID LIKE :user_ID ORDER BY user_ID ASC, class_ID ASC;
+WHERE classes.class_ID LIKE :class_ID
+WHERE classes.category LIKE :category
+WHERE classes.session LIKE :session
+WHERE users.OSU_ID LIKE :OSU_ID
+
+----------------------------------
+# class_form relationship DML's
+
+# List class_form table
+SELECT class_form.class_ID AS class_ID, classes.category AS category, classes.section AS section, class_form.form_ID AS form_ID, forms.type AS type FROM class_form LEFT JOIN classes on classes.class_ID = class_form.class_ID LEFT JOIN forms ON forms.form_ID = class_form.form_ID ORDER BY class_ID ASC, form_ID ASC;
+
+# Add a class_form relationship
+INSERT INTO class_form (class_ID, form_ID) VALUES (:class_ID, form_ID);
+
+# Delete a class_form relationship
+DELETE FROM class_form WHERE class_ID = :class_ID AND form_ID = :form_ID;
+
+# Update a class_form relationship
+# shouldn't need this
+UPDATE class_form SET form_ID = :form_ID WHERE class_ID = :class_ID
+
+# Search class_form by class_ID
+SELECT class_form.class_ID AS class_ID, classes.category AS category, classes.section AS section, class_form.form_ID AS form_ID, forms.type AS type FROM class_form LEFT JOIN classes on classes.class_ID = class_form.class_ID LEFT JOIN forms ON forms.form_ID = class_form.form_ID WHERE classes.class_ID = :class_ID ORDER BY class_ID ASC, form_ID ASC;
+
+----------------------------------
+# user_form relationship DML's
+
+# List user_form table
+SELECT user_form.user_ID AS user_ID, users.first_name AS first_name, users.last_name AS last_name, user_form.form_ID AS form_ID, forms.type AS type FROM user_form LEFT JOIN users on users.user_ID = user_form.user_ID LEFT JOIN forms ON forms.form_ID = user_form.form_ID ORDER BY user_ID ASC, form_ID ASC;
+
+# Add a user_form relationship
+INSER INTO user_form (user_ID, form_ID) VALUES (:user_ID, :form_ID);
+
+# Delete a user_form relationship
+DELETE FROM user_form WHERE user_ID = :user_ID AND form_ID = :form_ID;
+
+# Update a user_form relationship
+# shouldn't need this
+UPDATE user_form SET form_ID = :form_ID WHERE user_ID = :user_ID;
+
+# Search user_form by user_ID, OSU_ID, or form_ID
+SELECT user_form.user_ID AS user_ID, users.first_name AS first_name, users.last_name AS last_name, user_form.form_ID AS form_ID, forms.type AS type FROM user_form LEFT JOIN users on users.user_ID = user_form.user_ID LEFT JOIN forms ON forms.form_ID = user_form.form_ID WHERE users.user_ID = 1;
+WHERE users.OSU_ID LIKE :OSU_ID
+WHERE forms.form_ID = :form_ID
+
+----------------------------------
+# Get all forms the user needs to sign based on what classes they are in:
+
+SELECT class_form.class_ID AS class_ID, classes.category AS category, classes.section AS section, class_form.form_ID AS form_ID, forms.type AS type FROM class_form LEFT JOIN classes on classes.class_ID = class_form.class_ID LEFT JOIN forms ON forms.form_ID = class_form.form_ID WHERE class_form.class_ID IN 
+
+(SELECT user_class.class_ID AS class_ID FROM user_class WHERE user_class.user_ID LIKE :user_ID)
+
+# add on to previous query to get all forms user has not signed:
+
+AND class_form.form_ID NOT IN 
+
+(SELECT user_form.form_ID FROM user_form WHERE user_form.user_ID LIKE :user_ID)
